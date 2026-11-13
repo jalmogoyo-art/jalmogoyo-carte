@@ -62,7 +62,10 @@
     <div class="modal__backdrop" data-close></div>
     <article class="modal__card" role="dialog" aria-modal="true">
       <button class="modal__close" data-close aria-label="Fermer">&times;</button>
-      <div class="modal__img" id="modal-img"></div>
+      <div class="modal__img" id="modal-img">
+        <button class="modal__nav modal__nav--prev" data-step="-1" aria-label="Plat précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="modal__nav modal__nav--next" data-step="1" aria-label="Plat suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
       <div class="modal__body" id="modal-body"></div>
     </article>
   </div>
@@ -83,6 +86,7 @@
     </article>
   </div>
 
+  <script src="js/version.js"></script>
   <script src="js/menu-data.js"></script>
   <script src="js/app.js"></script>
 </body>

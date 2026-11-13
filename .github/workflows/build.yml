@@ -7,43 +7,24 @@ on:
 
 concurrency:
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  apk:
-    name: Android APK
+  check:
+    name: Check the menu
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    outputs:
+      build: ${{ steps.build.outputs.build }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
-      - name: Build APK
-        working-directory: android
-        run: gradle --no-daemon assembleRelease -PversionCode=$((100 + GITHUB_RUN_NUMBER))
-      - name: Rename APK
-        run: cp android/app/build/outputs/apk/release/app-release.apk jalmogoyo-menu.apk
-      - uses: actions/upload-artifact@v4
-        with:
-          name: jalmogoyo-menu-apk
-          path: jalmogoyo-menu.apk
-      - name: Publish release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release create "v1.$((100 + GITHUB_RUN_NUMBER))" jalmogoyo-menu.apk \
-            --target "$GITHUB_SHA" --latest \
-            --title "Jalmogoyo Menu 1.$((100 + GITHUB_RUN_NUMBER))" \
-            --notes "APK pour tablette Android. Installer jalmogoyo-menu.apk."
+      - name: Validate menu data
+        run: node tools/check-menu.js
+      - id: build
+        run: echo "build=$((100 + GITHUB_RUN_NUMBER))" >> "$GITHUB_OUTPUT"
 
   site:
-    name: Online version (GitHub Pages)
+    name: Online version (updates the tablets)
+    needs: check
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -54,11 +35,58 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Stamp version
+        run: node tools/stamp.js "${{ needs.check.outputs.build }}"
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: www
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  apk:
+    name: Android APK
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Stamp version
+        run: node tools/stamp.js "${{ needs.check.outputs.build }}"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build APK
+        working-directory: android
+        run: gradle --no-daemon assembleRelease -PversionCode=${{ needs.check.outputs.build }}
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/release/app-release.apk jalmogoyo-menu.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jalmogoyo-menu-apk
+          path: jalmogoyo-menu.apk
+      # The tablets update their menu from the online version, so a new APK is only
+      # published when the Android shell itself changed (or on a manual run).
+      - name: Publish release (only when the Android app changed)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD: ${{ needs.check.outputs.build }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] \
+             || ! gh release view >/dev/null 2>&1 \
+             || ! git diff --quiet "$BEFORE" "$GITHUB_SHA" -- android .github; then
+            gh release create "v1.$BUILD" jalmogoyo-menu.apk \
+              --target "$GITHUB_SHA" --latest \
+              --title "Jalmogoyo Menu 1.$BUILD" \
+              --notes "APK pour tablette Android. Installation : https://jalmogoyo-art.github.io/jalmogoyo-carte/install.html"
+          else
+            echo "Android app unchanged: no new release."
+          fi

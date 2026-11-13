@@ -3,7 +3,10 @@
   'use strict';
 
   var DATA = window.MENU_DATA;
-  var IDLE_SECONDS = 120;          // back to the welcome screen after 2 min without touch
+  var APP = window.APP_VERSION || { build: 'dev' };
+  var ONLINE = /^https?:/.test(location.protocol);
+  var IDLE_SECONDS = 180;          // back to the welcome screen after 3 min without touch
+  var UPDATE_CHECK_MINUTES = 5;    // how often a tablet looks for a new version of the menu
   var LANGS = ['fr', 'en', 'de', 'ko'];
   var LANG_LABEL = { fr: 'Français', en: 'English', de: 'Deutsch', ko: '한국어' };
 
@@ -19,7 +22,7 @@
       alDish: 'Allergènes (indicatif)',
       veg: 'Végétarien', notSpicy: 'Non piquant', spicy: 'Piquant', slightly: 'Légèrement piquant',
       two: 'Pour 2 pers. minimum', twoShort: '2 pers.', rice: 'Riz & petits mets inclus',
-      details: 'Détails', korean: 'Corée', home: 'Accueil',
+      details: 'Détails', info: 'Infos', prev: 'Plat précédent', next: 'Plat suivant', korean: 'Corée', home: 'Accueil',
       order: 'Pour commander, indiquez simplement le numéro <b>{n}</b> à votre serveur.',
       allergens: 'Tableau des allergènes disponible sur demande.',
       none: 'Aucun plat ne correspond à ce filtre. Demandez conseil à notre équipe : certains plats peuvent parfois être adaptés.',
@@ -37,7 +40,7 @@
       alDish: 'Allergens (for guidance)',
       veg: 'Vegetarian', notSpicy: 'Not spicy', spicy: 'Spicy', slightly: 'Slightly spicy',
       two: 'Minimum 2 persons', twoShort: '2 pers.', rice: 'Rice & side dishes included',
-      details: 'Details', korean: 'Korea', home: 'Home',
+      details: 'Details', info: 'Info', prev: 'Previous dish', next: 'Next dish', korean: 'Korea', home: 'Home',
       order: 'To order, simply tell your waiter number <b>{n}</b>.',
       allergens: 'Allergen information available on request.',
       none: 'No dish matches this filter. Please ask our team: some dishes can sometimes be adapted.',
@@ -55,7 +58,7 @@
       alDish: 'Allergene (ohne Gewähr)',
       veg: 'Vegetarisch', notSpicy: 'Nicht scharf', spicy: 'Scharf', slightly: 'Leicht scharf',
       two: 'Ab 2 Personen', twoShort: '2 Pers.', rice: 'Reis & Beilagen inklusive',
-      details: 'Details', korean: 'Korea', home: 'Start',
+      details: 'Details', info: 'Infos', prev: 'Vorheriges Gericht', next: 'Nächstes Gericht', korean: 'Korea', home: 'Start',
       order: 'Zum Bestellen nennen Sie Ihrer Bedienung einfach die Nummer <b>{n}</b>.',
       allergens: 'Allergenliste auf Anfrage erhältlich.',
       none: 'Kein Gericht entspricht diesem Filter. Fragen Sie unser Team: Manche Gerichte können angepasst werden.',
@@ -73,7 +76,7 @@
       alDish: '알레르기 성분 (참고용)',
       veg: '채식', notSpicy: '안 매운 메뉴', spicy: '매운맛', slightly: '약간 매운맛',
       two: '2인 이상 주문', twoShort: '2인', rice: '공기밥 · 반찬 포함',
-      details: '자세히', korean: '한국', home: '처음으로',
+      details: '자세히', info: '안내', prev: '이전 메뉴', next: '다음 메뉴', korean: '한국', home: '처음으로',
       order: '주문하실 때 직원에게 <b>{n}</b>번이라고 말씀해 주세요.',
       allergens: '알레르기 정보는 요청 시 제공됩니다.',
       none: '조건에 맞는 메뉴가 없습니다. 직원에게 문의해 주세요. 일부 메뉴는 조정이 가능할 수 있습니다.',
@@ -165,7 +168,7 @@
     var html = DATA.categories.map(function (c) {
       return '<button class="nav-btn" data-target="sec-' + c.id + '">' + icon(c.icon) + '<span>' + esc(tr(c.t).title) + '</span></button>';
     }).join('');
-    html += '<button class="nav-btn" data-target="info">' + icon('info') + '<span>Infos</span></button>';
+    html += '<button class="nav-btn" data-target="info">' + icon('info') + '<span>' + esc(ui('info')) + '</span></button>';
     $('#nav').innerHTML = html;
 
     $('#side-langs').innerHTML = LANGS.map(function (l) {
@@ -274,7 +277,8 @@
       '<div><h3>' + esc(ui('infoRiceT')) + '</h3><p>' + esc(ui('infoRice')) + '</p></div>' +
       '<div><h3>' + esc(ui('infoAllergT')) + '</h3><p>' + esc(ui('infoAllerg')) + '</p></div>' +
       '<div><h3>' + esc(ui('infoTakeT')) + '</h3><p>' + sub(ui('infoTake')) + '</p></div>' +
-      '</div><img class="info__crane" src="img/brand/crane-cream.png" alt="">';
+      '</div><img class="info__crane" src="img/brand/crane-cream.png" alt="">' +
+      '<p class="info__version">' + esc(DATA.version) + ' · v' + esc(APP.build) + '</p>';
   }
 
   function renderAll() {
@@ -292,9 +296,20 @@
   var dishIndex = {};
   DATA.categories.forEach(function (c) { c.items.forEach(function (d) { d._cat = c; dishIndex[d.id] = d; }); });
 
-  function openDish(id) {
+  var currentDish = null;
+  /* dishes currently on screen (filters applied), in menu order */
+  function visibleDishes() { return $$('#sections .card').map(function (c) { return c.getAttribute('data-dish'); }); }
+  function stepDish(delta) {
+    var ids = visibleDishes();
+    var i = ids.indexOf(currentDish);
+    if (i < 0 || ids.length < 2) return;
+    openDish(ids[(i + delta + ids.length) % ids.length], true);
+  }
+
+  function openDish(id, swap) {
     var d = dishIndex[id];
     if (!d) return;
+    currentDish = id;
     var t = tr(d.t);
     var cat = tr(d._cat.t);
     var imgEl = $('#modal-img');
@@ -311,9 +326,21 @@
       (d.al && d.al.length ? '<div class="m-al"><b>' + esc(ui('alDish')) + '</b>' + d.al.map(function (k) { return '<span class="al-tag">' + esc(alName(k)) + '</span>'; }).join('') + '</div>' : '') +
       '<div class="m-order"><div><span class="num">' + esc(d.num) + '</span><span>' + ui('order').replace('{n}', esc(d.num)) + '</span></div>' +
       '<p class="m-allerg">' + esc(ui('allergens')) + '</p></div>';
+    var many = visibleDishes().length > 1;
+    $$('.modal__nav').forEach(function (b) {
+      b.hidden = !many;
+      b.setAttribute('aria-label', ui(b.getAttribute('data-step') === '1' ? 'next' : 'prev'));
+    });
+    var body = $('#modal-body');
+    body.scrollTop = 0;
+    if (swap) {            // replay the short fade when moving from one dish to the next
+      body.classList.remove('is-swap'); imgEl.classList.remove('is-swap');
+      void body.offsetWidth;
+      body.classList.add('is-swap'); imgEl.classList.add('is-swap');
+    }
     $('#modal').hidden = false;
   }
-  function closeDish() { $('#modal').hidden = true; }
+  function closeDish() { $('#modal').hidden = true; currentDish = null; }
 
   function renderAllergenPanel() {
     $('#al-title').textContent = ui('alTitle');
@@ -378,6 +405,37 @@
     $('#allergen-panel').hidden = true;
     $('#welcome').hidden = false;
     $('#main').scrollTop = 0;
+    checkUpdate();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Automatic updates                                                  */
+  /* A tablet compares its version with the one published online and    */
+  /* reloads only while the welcome screen is shown, never while a      */
+  /* guest is reading the menu.                                         */
+  /* ------------------------------------------------------------------ */
+  var updatePending = false;
+  function isIdle() { return !$('#welcome').hidden; }
+  window.isIdle = isIdle;   // also used by the Android shell
+
+  function applyUpdate() {
+    if (!updatePending || !isIdle()) return;
+    try {   // never reload in a loop if the new files are not reachable yet
+      var last = JSON.parse(sessionStorage.getItem('jm-reload') || 'null');
+      if (last && last.build === updatePending && Date.now() - last.at < 15 * 60 * 1000) return;
+      sessionStorage.setItem('jm-reload', JSON.stringify({ build: updatePending, at: Date.now() }));
+    } catch (e) {}
+    location.reload();
+  }
+  function checkUpdate() {
+    if (!ONLINE || !window.fetch) return;
+    fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (v) {
+        if (v && v.build && String(v.build) !== String(APP.build)) updatePending = String(v.build);
+        applyUpdate();
+      })
+      .catch(function () {});
   }
 
   var idleTimer = null;
@@ -412,6 +470,7 @@
       return;
     }
     if (el.id === 'home-btn') { goHome(); return; }
+    if (el.classList.contains('modal__nav')) { stepDish(+el.getAttribute('data-step')); return; }
     if (el.classList.contains('nav-btn')) { scrollToSection(el.getAttribute('data-target')); return; }
     if (el.classList.contains('chip')) {
       var f = el.getAttribute('data-filter');
@@ -434,6 +493,28 @@
     document.addEventListener(ev, resetIdle, { passive: true, capture: true });
   });
 
+  // Dish detail: swipe left / right (or arrow keys) to browse the dishes
+  (function () {
+    var x0 = null, y0 = null;
+    var card = $('#modal .modal__card');
+    card.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) { x0 = null; return; }
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+    }, { passive: true });
+    card.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy)) stepDish(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  })();
+  document.addEventListener('keydown', function (e) {
+    if ($('#modal').hidden) return;
+    if (e.key === 'ArrowRight') stepDish(1);
+    else if (e.key === 'ArrowLeft') stepDish(-1);
+    else if (e.key === 'Escape') closeDish();
+  });
+
   document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
 
   // Android back button (called by the native wrapper)
@@ -447,7 +528,17 @@
   /* ------------------------------------------------------------------ */
   /* Boot                                                               */
   /* ------------------------------------------------------------------ */
-  $('#welcome-hours').textContent = UI.fr.welcomeHours;
+  // Opening hours on the welcome screen, in each language in turn
+  (function () {
+    var el = $('#welcome-hours'), i = 0;
+    el.textContent = UI.fr.welcomeHours;
+    setInterval(function () {
+      if (!isIdle()) return;
+      i = (i + 1) % LANGS.length;
+      el.classList.add('is-out');
+      setTimeout(function () { el.textContent = UI[LANGS[i]].welcomeHours; el.lang = LANGS[i]; el.classList.remove('is-out'); }, 400);
+    }, 5000);
+  })();
   resetIdle();
 
   // Pre-load photos so they show instantly
@@ -455,17 +546,12 @@
     Object.keys(dishIndex).forEach(function (k) { if (dishIndex[k].img) { var i = new Image(); i.src = imgUrl(dishIndex[k].img); } });
   }, 800);
 
-  // Offline cache when served over http(s) (PWA install). Not used inside the Android app.
-  if ('serviceWorker' in navigator && /^https?:/.test(location.protocol)) {
-    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) {
-      if (reg.update) reg.update();
-    }).catch(function () {});
-    // when a new version of the app takes over, reload once to show it
-    var reloaded = false;
-    navigator.serviceWorker.addEventListener('controllerchange', function () {
-      if (reloaded) return;
-      reloaded = true;
-      location.reload();
-    });
+  // Offline copy of the whole menu (photos included) + automatic updates when served over http(s)
+  if (ONLINE) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(function () {});
+    }
+    setInterval(checkUpdate, UPDATE_CHECK_MINUTES * 60 * 1000);
+    window.addEventListener('online', checkUpdate);
   }
 })();

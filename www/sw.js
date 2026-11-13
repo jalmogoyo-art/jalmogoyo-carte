@@ -1,6 +1,7 @@
-/* Offline cache for the PWA version.
- * Network first: when online the latest version is always shown; the cache is only used offline. */
-var CACHE = 'jalmogoyo-menu-v6';
+/* Offline copy of the menu (used by the tablets and by the browser version).
+ * Network first: when online the latest version is always shown; the cache is only used offline.
+ * CACHE and FILES are rewritten at each publication by tools/stamp.js. */
+var CACHE = 'jalmogoyo-menu-dev';
 var FILES = [
   "css/app.css",
   "img/brand/crane-cream.png",
@@ -47,6 +48,7 @@ var FILES = [
   "index.html",
   "js/app.js",
   "js/menu-data.js",
+  "js/version.js",
   "manifest.webmanifest"
 ];
 self.addEventListener('install', function (e) {
@@ -59,6 +61,7 @@ self.addEventListener('activate', function (e) {
 });
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
+  if (/\/version\.json(\?|$)/.test(e.request.url)) return;   // update check: always straight from the network
   e.respondWith(
     fetch(e.request, { cache: 'no-cache' }).then(function (res) {
       if (res && res.ok) {

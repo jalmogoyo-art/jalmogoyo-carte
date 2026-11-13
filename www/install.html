@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="robots" content="noindex">
+  <title>Jalmogoyo – Installer le menu sur une tablette</title>
+  <link rel="icon" href="img/brand/icon-192.png">
+  <style>
+    :root { --black: #0b0b0b; --cream: #ddd6b5; --red: #e3141d; --line: #2a2a2a; --soft: #a9a38a; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--black); color: var(--cream);
+      font-family: "Samsung Sans", "SamsungOne", Roboto, "Noto Sans", "Segoe UI", Arial, sans-serif;
+      font-size: 18px; line-height: 1.55; -webkit-text-size-adjust: 100%;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 20px 56px; }
+    .logo { display: block; width: min(300px, 70%); margin: 0 auto 8px; }
+    h1 { font-size: 26px; font-weight: 600; text-align: center; margin: 12px 0 6px; text-wrap: balance; }
+    .lead { text-align: center; color: var(--soft); margin: 0 0 28px; }
+    .btn {
+      display: block; text-align: center; text-decoration: none; background: var(--red); color: #fff;
+      font-size: 22px; font-weight: 600; padding: 20px 24px; border-radius: 16px;
+    }
+    .btn:active { background: #b30f16; }
+    .ver { text-align: center; font-size: 14px; color: var(--soft); margin: 10px 0 0; }
+    h2 { font-size: 15px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin: 40px 0 12px; }
+    ol { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    ol li { counter-increment: step; position: relative; padding: 14px 0 14px 54px; border-top: 1px solid var(--line); }
+    ol li:first-child { border-top: 0; }
+    ol li::before {
+      content: counter(step); position: absolute; left: 0; top: 13px; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--cream); display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    b { color: #fff; font-weight: 600; }
+    .note { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-top: 14px; color: var(--soft); font-size: 16px; }
+    .note b { color: var(--cream); }
+    .qr { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .qr img { width: 168px; height: 168px; border-radius: 12px; background: #fff; flex: 0 0 auto; }
+    .qr p { margin: 0; flex: 1 1 240px; }
+    a { color: var(--cream); }
+    code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+<main>
+  <img class="logo" src="img/brand/logo.png" alt="Jalmogoyo – Restaurant coréen">
+  <h1>Installer le menu sur une tablette</h1>
+  <p class="lead">À faire une seule fois par tablette. Ensuite, le menu se met à jour tout seul.</p>
+
+  <a class="btn" href="https://github.com/jalmogoyo-art/jalmogoyo-carte/releases/latest/download/jalmogoyo-menu.apk">Télécharger l’application</a>
+  <p class="ver" id="ver"></p>
+
+  <h2>Sur chaque tablette</h2>
+  <ol>
+    <li>Connectez la tablette au <b>Wi-Fi</b> du restaurant.</li>
+    <li>Ouvrez cette page sur la tablette (QR code ci-dessous) et touchez <b>Télécharger l’application</b>.</li>
+    <li>Ouvrez le fichier téléchargé <b>jalmogoyo-menu.apk</b>. Si la tablette le demande, autorisez l’installation depuis le navigateur, puis touchez <b>Installer</b>.</li>
+    <li>Lancez <b>Jalmogoyo Menu</b>. C’est terminé.</li>
+  </ol>
+  <div class="note">
+    <b>Une ancienne version est déjà installée ?</b> Désinstallez-la d’abord (appui long sur l’icône → Désinstaller),
+    sinon la tablette refusera la nouvelle. Ce n’est nécessaire qu’une fois.
+  </div>
+
+  <h2>Ouvrir cette page sur une tablette</h2>
+  <div class="qr">
+    <img src="img/install/qr.svg" alt="QR code vers cette page">
+    <p>Affichez cette page sur votre téléphone ou votre ordinateur, puis scannez ce QR code avec l’appareil photo de chaque tablette.<br>
+    Ou tapez l’adresse : <code>jalmogoyo-art.github.io/jalmogoyo-carte/install.html</code></p>
+  </div>
+
+  <h2>Mises à jour</h2>
+  <p>Les prix, les plats et les photos se mettent à jour <b>automatiquement</b> sur toutes les tablettes connectées au Wi-Fi,
+  quelques minutes après la modification, quand l’écran d’accueil est affiché. Sans Wi-Fi, la tablette continue d’afficher
+  la dernière version reçue.</p>
+  <p>Pour vérifier la version d’une tablette : tout en bas du menu, sous « Infos », un numéro comme <b>v123</b> est affiché.
+  Il doit être le même que celui indiqué sous le bouton rouge de cette page.</p>
+
+  <h2>Conseils pour le service</h2>
+  <div class="note">
+    <b>Bloquer la tablette sur le menu :</b> dans les paramètres Samsung, cherchez « Épingler les applications »,
+    activez l’option, puis épinglez Jalmogoyo Menu depuis la liste des applications récentes. Les clients ne peuvent alors plus quitter le menu.
+  </div>
+  <div class="note">
+    <b>Voir le menu sans rien installer :</b> <a href="./">ouvrir la version en ligne</a>.
+  </div>
+</main>
+<script src="js/version.js"></script>
+<script>
+  (function () {
+    var v = window.APP_VERSION;
+    if (v && v.build && v.build !== 'dev') {
+      document.getElementById('ver').textContent = 'Version actuelle du menu : v' + v.build + (v.date ? ' · ' + v.date : '');
+    }
+  })();
+</script>
+</body>
+</html>
