@@ -97,26 +97,26 @@ window.MENU_DATA = {
             de: { title: 'Menü D', desc: 'Scharfer Rindfleischeintopf.' },
             ko: { title: 'D 메뉴', desc: '얼큰한 소고기 육개장.' }
           } },
-        { id: 'lunch-e', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'E', name: 'Bibimbap', ko: '소고기 비빔밥', price: 18, img: 'bibimbap-beef', rice: true,
+        { id: 'lunch-e', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'E', name: 'Dolsot Bibimbap', ko: '소고기 돌솥 비빔밥', price: 18, img: 'bibimbap-beef', rice: true,
           t: {
-            fr: { title: 'Menu E', desc: 'Bibimbap au bœuf.' },
-            en: { title: 'Menu E', desc: 'Beef bibimbap.' },
-            de: { title: 'Menü E', desc: 'Bibimbap mit Rindfleisch.' },
-            ko: { title: 'E 메뉴', desc: '소고기 비빔밥.' }
+            fr: { title: 'Menu E', desc: 'Dolsot bibimbap au bœuf (bol en pierre chauffé).' },
+            en: { title: 'Menu E', desc: 'Beef dolsot bibimbap (heated stone bowl).' },
+            de: { title: 'Menü E', desc: 'Dolsot-Bibimbap mit Rindfleisch (heißer Steintopf).' },
+            ko: { title: 'E 메뉴', desc: '소고기 돌솥 비빔밥.' }
           } },
-        { id: 'lunch-f', al: ['fish', 'eggs', 'soy', 'gluten', 'sesame'], num: 'F', name: 'Bibimbap', ko: '연어 비빔밥', price: 18, img: 'bibimbap-salmon', rice: true,
+        { id: 'lunch-f', al: ['fish', 'eggs', 'soy', 'gluten', 'sesame'], num: 'F', name: 'Dolsot Bibimbap', ko: '연어 돌솥 비빔밥', price: 18, img: 'bibimbap-salmon', rice: true,
           t: {
-            fr: { title: 'Menu F', desc: 'Bibimbap au saumon.' },
-            en: { title: 'Menu F', desc: 'Salmon bibimbap.' },
-            de: { title: 'Menü F', desc: 'Bibimbap mit Lachs.' },
-            ko: { title: 'F 메뉴', desc: '연어 비빔밥.' }
+            fr: { title: 'Menu F', desc: 'Dolsot bibimbap au saumon (bol en pierre chauffé).' },
+            en: { title: 'Menu F', desc: 'Salmon dolsot bibimbap (heated stone bowl).' },
+            de: { title: 'Menü F', desc: 'Dolsot-Bibimbap mit Lachs (heißer Steintopf).' },
+            ko: { title: 'F 메뉴', desc: '연어 돌솥 비빔밥.' }
           } },
-        { id: 'lunch-g', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'G', name: 'Bibimbap', ko: '야채 비빔밥', price: 16, img: 'bibimbap-veg', veg: true, rice: true,
+        { id: 'lunch-g', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'G', name: 'Dolsot Bibimbap', ko: '야채 돌솥 비빔밥', price: 16, img: 'bibimbap-veg', veg: true, rice: true,
           t: {
-            fr: { title: 'Menu G', desc: 'Bibimbap aux légumes.' },
-            en: { title: 'Menu G', desc: 'Vegetable bibimbap.' },
-            de: { title: 'Menü G', desc: 'Bibimbap mit Gemüse.' },
-            ko: { title: 'G 메뉴', desc: '야채 비빔밥.' }
+            fr: { title: 'Menu G', desc: 'Dolsot bibimbap aux légumes (bol en pierre chauffé).' },
+            en: { title: 'Menu G', desc: 'Vegetable dolsot bibimbap (heated stone bowl).' },
+            de: { title: 'Menü G', desc: 'Dolsot-Bibimbap mit Gemüse (heißer Steintopf).' },
+            ko: { title: 'G 메뉴', desc: '야채 돌솥 비빔밥.' }
           } }
       ]
     },
