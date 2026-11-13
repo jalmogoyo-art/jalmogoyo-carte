@@ -57,11 +57,29 @@ if (!data || !Array.isArray(data.categories) || !data.categories.length) {
       for (const k of ['from', 'until']) if (o[k] != null && !/^([01]\d|2[0-3]):[0-5]\d$/.test(o[k])) err(cw, 'onlyAt.' + k + ' : heure au format HH:MM');
     }
     if (!Array.isArray(c.items) || !c.items.length) { err(cw, 'aucun plat'); continue; }
+    if (c.groups != null) {
+      if (!Array.isArray(c.groups) || !c.groups.length) err(cw, 'groups : liste de familles attendue');
+      else for (const g of c.groups) {
+        const gw = cw + ' › famille ' + (g.id || '?');
+        if (!g.id) err(gw, 'identifiant manquant');
+        for (const l of LANGS) if (!g.t || !String(g.t[l] || '').trim()) err(gw, 'traduction manquante : ' + l);
+        for (const sb of g.subs || []) for (const l of LANGS) if (!sb.id || !sb.t || !String(sb.t[l] || '').trim()) err(gw, 'sous-famille : identifiant ou traduction manquante (' + l + ')');
+        if (!c.items.some((d) => d.group === g.id)) err(gw, 'famille vide');
+      }
+    }
     for (const d of c.items) {
       const w = cw + ' › ' + (d.id || '?');
       if (!d.id || ids.has(d.id)) err(w, 'identifiant manquant ou en double');
       ids.add(d.id);
-      checkPrice(w, d.price);
+      if (d.sizes != null) {
+        if (!Array.isArray(d.sizes) || !d.sizes.length) err(w, 'sizes : liste de [contenance, prix] attendue');
+        else for (const z of d.sizes) { if (!Array.isArray(z) || !String(z[0] || '').trim()) err(w, 'sizes : contenance manquante'); checkPrice(w, typeof z[1] === 'number' ? z[1] : NaN); }
+      } else checkPrice(w, d.price);
+      if (c.groups) {
+        const g = c.groups.find((x) => x.id === d.group);
+        if (!g) err(w, 'famille inconnue (group) : ' + d.group);
+        else if (g.subs && !g.subs.some((x) => x.id === d.sub)) err(w, 'sous-famille inconnue (sub) : ' + d.sub);
+      }
       checkTexts(w, d.t, true);
       if (!c.drinks) {
         if (d.num == null || d.num === '') err(w, 'numéro manquant (num)');

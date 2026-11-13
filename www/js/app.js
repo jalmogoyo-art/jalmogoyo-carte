@@ -22,7 +22,7 @@
       alDish: 'Allergènes (indicatif)',
       veg: 'Végétarien', notSpicy: 'Non piquant', spicy: 'Piquant', slightly: 'Légèrement piquant',
       two: 'Pour 2 pers. minimum', twoShort: '2 pers.', rice: 'Riz & petits mets inclus',
-      details: 'Détails', info: 'Infos', prev: 'Plat précédent', next: 'Plat suivant', korean: 'Corée', home: 'Accueil',
+      details: 'Détails', info: 'Infos', prev: 'Plat précédent', next: 'Plat suivant', korean: 'Corée', bio: 'Bio', home: 'Accueil',
       order: 'Pour commander, indiquez simplement le numéro <b>{n}</b> à votre serveur.',
       allergens: 'Tableau des allergènes disponible sur demande.',
       none: 'Aucun plat ne correspond à ce filtre. Demandez conseil à notre équipe : certains plats peuvent parfois être adaptés.',
@@ -40,7 +40,7 @@
       alDish: 'Allergens (for guidance)',
       veg: 'Vegetarian', notSpicy: 'Not spicy', spicy: 'Spicy', slightly: 'Slightly spicy',
       two: 'Minimum 2 persons', twoShort: '2 pers.', rice: 'Rice & side dishes included',
-      details: 'Details', info: 'Info', prev: 'Previous dish', next: 'Next dish', korean: 'Korea', home: 'Home',
+      details: 'Details', info: 'Info', prev: 'Previous dish', next: 'Next dish', korean: 'Korea', bio: 'Organic', home: 'Home',
       order: 'To order, simply tell your waiter number <b>{n}</b>.',
       allergens: 'Allergen information available on request.',
       none: 'No dish matches this filter. Please ask our team: some dishes can sometimes be adapted.',
@@ -58,7 +58,7 @@
       alDish: 'Allergene (ohne Gewähr)',
       veg: 'Vegetarisch', notSpicy: 'Nicht scharf', spicy: 'Scharf', slightly: 'Leicht scharf',
       two: 'Ab 2 Personen', twoShort: '2 Pers.', rice: 'Reis & Beilagen inklusive',
-      details: 'Details', info: 'Infos', prev: 'Vorheriges Gericht', next: 'Nächstes Gericht', korean: 'Korea', home: 'Start',
+      details: 'Details', info: 'Infos', prev: 'Vorheriges Gericht', next: 'Nächstes Gericht', korean: 'Korea', bio: 'Bio', home: 'Start',
       order: 'Zum Bestellen nennen Sie Ihrer Bedienung einfach die Nummer <b>{n}</b>.',
       allergens: 'Allergenliste auf Anfrage erhältlich.',
       none: 'Kein Gericht entspricht diesem Filter. Fragen Sie unser Team: Manche Gerichte können angepasst werden.',
@@ -76,7 +76,7 @@
       alDish: '알레르기 성분 (참고용)',
       veg: '채식', notSpicy: '안 매운 메뉴', spicy: '매운맛', slightly: '약간 매운맛',
       two: '2인 이상 주문', twoShort: '2인', rice: '공기밥 · 반찬 포함',
-      details: '자세히', info: '안내', prev: '이전 메뉴', next: '다음 메뉴', korean: '한국', home: '처음으로',
+      details: '자세히', info: '안내', prev: '이전 메뉴', next: '다음 메뉴', korean: '한국', bio: '유기농', home: '처음으로',
       order: '주문하실 때 직원에게 <b>{n}</b>번이라고 말씀해 주세요.',
       allergens: '알레르기 정보는 요청 시 제공됩니다.',
       none: '조건에 맞는 메뉴가 없습니다. 직원에게 문의해 주세요. 일부 메뉴는 조정이 가능할 수 있습니다.',
@@ -123,7 +123,7 @@
   /* ------------------------------------------------------------------ */
   /* State & helpers                                                    */
   /* ------------------------------------------------------------------ */
-  var state = { lang: 'fr', filter: { veg: false, notSpicy: false, spicy: false }, allergens: {} };
+  var state = { lang: 'fr', filter: { veg: false, notSpicy: false, spicy: false }, allergens: {}, group: {} };
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
@@ -218,12 +218,44 @@
 
   function drinkHtml(d) {
     var t = tr(d.t);
-    return '<div class="drink"><div class="drink__main">' +
+    var many = d.sizes && d.sizes.length > 1;
+    var one = d.sizes && d.sizes.length === 1 ? d.sizes[0] : null;
+    var size = one ? one[0] : d.size;
+    return '<div class="drink' + (many ? ' drink--sizes' : '') + '"><div class="drink__main">' +
       '<span class="drink__title">' + esc(t.title) + '</span>' +
-      (d.size ? '<span class="drink__size">' + esc(d.size) + '</span>' : '') +
+      (d.year ? '<span class="drink__size">' + esc(d.year) + '</span>' : '') +
+      (size && !many ? '<span class="drink__size">' + esc(size) + '</span>' : '') +
       (d.korean ? '<span class="k-badge">' + esc(ui('korean')) + '</span>' : '') +
+      (d.bio ? '<span class="k-badge k-badge--bio">' + esc(ui('bio')) + '</span>' : '') +
       (t.desc ? '<div class="drink__desc">' + esc(t.desc) + '</div>' : '') +
-      '</div><span class="price">' + fmtPrice(d.price) + '</span></div>';
+      '</div>' +
+      (many
+        ? '<div class="drink__sizes">' + d.sizes.map(function (s) {
+            return '<span class="sz"><span class="sz__l">' + esc(s[0]) + '</span><span class="price">' + fmtOne(s[1]) + '</span></span>';
+          }).join('') + '</div>'
+        : '<span class="price">' + (one ? fmtOne(one[1]) : fmtPrice(d.price)) + '</span>') +
+      '</div>';
+  }
+
+  /* Drinks section with families ("groups"): a row of buttons, one family shown at a time */
+  function drinkGroupsHtml(c) {
+    var cur = state.group[c.id];
+    if (!c.groups.some(function (g) { return g.id === cur; })) cur = c.groups[0].id;
+    var tabs = '<div class="tabs" role="tablist">' + c.groups.map(function (g) {
+      return '<button class="tab' + (g.id === cur ? ' is-on' : '') + '" role="tab" aria-selected="' + (g.id === cur) + '" data-cat="' + c.id + '" data-group="' + g.id + '">' + esc(tr(g.t)) + '</button>';
+    }).join('') + '</div>';
+    var g = c.groups.filter(function (x) { return x.id === cur; })[0];
+    var items = c.items.filter(function (d) { return d.group === cur; });
+    var body;
+    if (g.subs) {
+      body = g.subs.map(function (sub) {
+        var list = items.filter(function (d) { return d.sub === sub.id; });
+        return list.length ? '<h3 class="drinks__sub">' + esc(tr(sub.t)) + '</h3><div class="drinks">' + list.map(drinkHtml).join('') + '</div>' : '';
+      }).join('');
+    } else {
+      body = '<div class="drinks">' + items.map(drinkHtml).join('') + '</div>';
+    }
+    return tabs + body;
   }
 
   function matches(d) {
@@ -244,7 +276,7 @@
       var body;
       if (c.drinks) {
         if (filtering) return '';
-        body = '<div class="drinks">' + c.items.map(drinkHtml).join('') + '</div>';
+        body = c.groups ? drinkGroupsHtml(c) : '<div class="drinks">' + c.items.map(drinkHtml).join('') + '</div>';
       } else {
         var items = c.items.filter(matches);
         if (!items.length) return '';
@@ -409,6 +441,7 @@
     closeDish();
     $('#allergen-panel').hidden = true;
     $('#welcome').hidden = false;
+    state.group = {};
     $('#main').scrollTop = 0;
     checkUpdate();
   }
@@ -477,6 +510,13 @@
     if (el.id === 'home-btn') { goHome(); return; }
     if (el.classList.contains('modal__nav')) { stepDish(+el.getAttribute('data-step')); return; }
     if (el.classList.contains('nav-btn')) { scrollToSection(el.getAttribute('data-target')); return; }
+    if (el.classList.contains('tab')) {          // drink family buttons
+      var top = $('#main').scrollTop;
+      state.group[el.getAttribute('data-cat')] = el.getAttribute('data-group');
+      renderSections(); updateActiveNav();
+      $('#main').scrollTop = top;
+      return;
+    }
     if (el.classList.contains('chip')) {
       var f = el.getAttribute('data-filter');
       state.filter[f] = !state.filter[f];
