@@ -36,7 +36,7 @@ ajouter la date dans `closedDays` en haut de `www/js/menu-data.js` (ex. `closedD
 | --- | --- |
 | `www/` | Le menu lui-même (HTML / CSS / JS / photos). |
 | `www/js/menu-data.js` | Plats, prix, traductions, allergènes. **C'est le fichier à modifier.** |
-| `www/img/dishes/` | Photos des plats. |
+| `www/img/dishes/` | Photos des plats : `nom.jpg` (800 px de large, vignettes) et `large/nom.jpg` (1800 px, fiche du plat). |
 | `www/install.html` | Page d'installation pour les tablettes. |
 | `android/` | Application Android plein écran (affiche la version en ligne, copie de secours incluse). |
 | `tools/` | Vérification du menu et numérotation des versions, lancées automatiquement. |

@@ -159,7 +159,9 @@
   }
   function activeAllergens() { return ALLERGENS.filter(function (k) { return state.allergens[k]; }); }
 
+  /* Photos: img/dishes/<name>.jpg (800 px, cards) and img/dishes/large/<name>.jpg (1800 px, dish detail) */
   function imgUrl(name) { return 'img/dishes/' + name + '.jpg'; }
+  function imgLargeUrl(name) { return 'img/dishes/large/' + name + '.jpg'; }
 
   /* ------------------------------------------------------------------ */
   /* Rendering                                                          */
@@ -315,7 +317,8 @@
     var t = tr(d.t);
     var cat = tr(d._cat.t);
     var imgEl = $('#modal-img');
-    if (d.img) { imgEl.style.backgroundImage = "url('" + imgUrl(d.img) + "')"; imgEl.hidden = false; }
+    // large photo on top, card photo underneath: something shows at once while the large one loads
+    if (d.img) { imgEl.style.backgroundImage = "url('" + imgLargeUrl(d.img) + "'), url('" + imgUrl(d.img) + "')"; imgEl.hidden = false; }
     else imgEl.hidden = true;
     $('#modal-body').innerHTML =
       '<div class="m-num"><span class="num">' + esc(d.num) + '</span>' + esc(cat.title) + '</div>' +
