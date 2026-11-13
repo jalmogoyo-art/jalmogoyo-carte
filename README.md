@@ -23,6 +23,13 @@ réinstallation** :
 
 Le numéro de version est affiché tout en bas du menu (« v123 ») et sur la page d'installation.
 
+## Menus du midi
+
+La rubrique « Menus du midi » s'affiche toute seule **du mardi au vendredi jusqu'à 14h30**, et se
+masque le soir, le samedi et les **jours fériés** (calendrier d'Alsace-Moselle, Pâques et Pentecôte
+calculées chaque année — `www/js/schedule.js`). Pour une fermeture exceptionnelle ou un pont,
+ajouter la date dans `closedDays` en haut de `www/js/menu-data.js` (ex. `closedDays: ['2026-12-24']`).
+
 ## Organisation
 
 | Dossier | Contenu |

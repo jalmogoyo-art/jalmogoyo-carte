@@ -235,7 +235,9 @@
 
   function renderSections() {
     var filtering = state.filter.veg || state.filter.notSpicy || state.filter.spicy;
+    var now = new Date();
     var html = DATA.categories.map(function (c) {
+      if (c.onlyAt && window.MENU_SCHEDULE && !MENU_SCHEDULE.isShown(c.onlyAt, now, DATA.closedDays)) return '';
       var t = tr(c.t);
       var body;
       if (c.drinks) {

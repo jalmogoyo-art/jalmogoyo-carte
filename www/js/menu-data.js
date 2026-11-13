@@ -14,9 +14,19 @@
  *           celery mustard sesame sulphites lupin molluscs  — indicative, to be checked by the kitchen
  *   rice    true = served with a bowl of rice + "banchan" side dishes
  *   t       { fr, en, de, ko } : { title, desc }
+ *
+ * Category field:
+ *   onlyAt  when the whole section is shown, e.g. the lunch menus:
+ *           { days: [2,3,4,5], until: '14:30', noHolidays: true }
+ *           days: 0 = Sunday, 1 = Monday … 6 = Saturday — times use the tablet's clock.
+ *           Public holidays (Alsace-Moselle calendar, Easter etc. computed every year)
+ *           are automatic — see js/schedule.js.
  */
 window.MENU_DATA = {
   version: 'Mars 2023',
+  // Extra days without lunch menus (bridge day, exceptional closure…), format 'YYYY-MM-DD'.
+  // Public holidays do NOT need to be listed here: they are automatic.
+  closedDays: [],
   phone: '03 89 45 55 88',
   address: '41 rue de la Sinne, 68100 Mulhouse',
 
@@ -51,6 +61,8 @@ window.MENU_DATA = {
     /* ------------------------------------------------------------ */
     {
       id: 'lunch', icon: 'sun', showDesc: true,
+      // Tuesday to Friday, until 14:30, never on public holidays
+      onlyAt: { days: [2, 3, 4, 5], until: '14:30', noHolidays: true },
       t: {
         fr: { title: 'Menus du midi', sub: 'Du mardi au vendredi midi uniquement (hors jours fériés)' },
         en: { title: 'Lunch menus', sub: 'Tuesday to Friday, lunchtime only (not on public holidays)' },
