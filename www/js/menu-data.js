@@ -392,6 +392,59 @@ window.MENU_DATA = {
     },
 
     /* ------------------------------------------------------------ */
+    /* Desserts: no number on the paper menu (noNum). Source: Tasty Cloud card, November 2026. */
+    {
+      id: 'desserts', icon: 'icecream', noNum: true,
+      t: {
+        fr: { title: 'Les desserts' }, en: { title: 'Desserts' }, de: { title: 'Desserts' }, ko: { title: '디저트' }
+      },
+      items: [
+        { id: 'ds-mango', al: ['eggs', 'milk', 'peanuts', 'sesame'], name: 'Flocons mangue', ko: '망고 빙수', price: 9.5,
+          t: {
+            fr: { title: 'Flocons glacés à la mangue', desc: 'Préparation « minute ». Flocons glacés à base de jus de mangue, sorbet mangue et assortiment de fruits frais.' },
+            en: { title: 'Mango shaved ice', desc: 'Made to order. Ice flakes made with mango juice, mango sorbet and assorted fresh fruit.' },
+            de: { title: 'Mango-Eisflocken', desc: 'Frisch zubereitet. Eisflocken aus Mangosaft, Mangosorbet und frische Früchte.' },
+            ko: { title: '망고 빙수', desc: '주문 즉시 만듭니다. 망고 주스 얼음 플레이크, 망고 셔벗, 신선한 과일.' }
+          } },
+        { id: 'ds-mochi', al: ['gluten', 'milk'], name: 'Mochi glacé', ko: '모찌 아이스크림', price: '3,50 / 7 / 10',
+          t: {
+            fr: { title: '1, 2 ou 3 pièces', desc: 'Demi-boule de glace enveloppée dans de la pâte de riz gluant.' },
+            en: { title: 'Ice-cream mochi · 1, 2 or 3 pieces', desc: 'Half a scoop of ice cream wrapped in soft glutinous rice dough.' },
+            de: { title: 'Eis-Mochi · 1, 2 oder 3 Stück', desc: 'Eine halbe Kugel Eis, umhüllt von weichem Klebreisteig.' },
+            ko: { title: '1개 · 2개 · 3개', desc: '쫀득한 찹쌀떡으로 감싼 아이스크림.' }
+          } },
+        { id: 'ds-nougat', al: ['milk', 'sesame', 'gluten', 'nuts', 'peanuts', 'eggs'], name: 'Nougat glacé', ko: '누가 글라세', price: 7,
+          t: {
+            fr: { title: 'Dessert glacé au nougat', desc: '' },
+            en: { title: 'Iced nougat parfait', desc: '' },
+            de: { title: 'Nougat-Eisparfait', desc: '' },
+            ko: { title: '누가 아이스 디저트', desc: '' }
+          } },
+        { id: 'ds-vacherin', al: ['milk', 'sesame', 'gluten', 'nuts', 'peanuts', 'eggs'], name: 'Vacherin glacé framboise', ko: '라즈베리 바슈랭 글라세', price: 7,
+          t: {
+            fr: { title: 'Dessert glacé meringué à la framboise', desc: '' },
+            en: { title: 'Raspberry ice-cream meringue cake', desc: '' },
+            de: { title: 'Himbeer-Eistorte mit Baiser', desc: '' },
+            ko: { title: '라즈베리 머랭 아이스 케이크', desc: '' }
+          } },
+        { id: 'ds-glaces', al: ['milk'], name: 'Glaces', ko: '아이스크림', price: '2,80 / 5,50 / 7,50',
+          t: {
+            fr: { title: '1, 2 ou 3 boules', desc: '' },
+            en: { title: 'Ice cream · 1, 2 or 3 scoops', desc: '' },
+            de: { title: 'Eis · 1, 2 oder 3 Kugeln', desc: '' },
+            ko: { title: '1 · 2 · 3 스쿱', desc: '' }
+          } },
+        { id: 'ds-irish', al: ['milk'], name: 'Irish coffee', ko: '아이리시 커피', price: 8.5,
+          t: {
+            fr: { title: 'Café, whiskey et crème', desc: '' },
+            en: { title: 'Coffee, whiskey and cream', desc: '' },
+            de: { title: 'Kaffee, Whiskey und Sahne', desc: '' },
+            ko: { title: '커피, 위스키, 크림', desc: '' }
+          } }
+      ]
+    },
+
+    /* ------------------------------------------------------------ */
     /* Drinks: one section, with a row of buttons (groups) to switch between families.
      * Item fields: group (one of groups[].id), sub (sub-heading inside a group, e.g. wine colour),
      *   size + price ("25 cl / 50 cl" + "3,50 / 6,80" for two sizes), or sizes: [['12 cl', 6.5], …]

@@ -109,6 +109,7 @@
     stone: '<path d="M4 10h16l-1.5 8a3 3 0 01-3 2.5h-7a3 3 0 01-3-2.5z"/><path d="M8 10c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5"/><circle cx="12" cy="6" r="1.4"/>',
     pot: '<path d="M4 9h16v6a5 5 0 01-5 5H9a5 5 0 01-5-5z"/><path d="M2 11h2M20 11h2M9 5c0-1 1-1 1-2M13 5c0-1 1-1 1-2"/>',
     glass: '<path d="M7 3h10l-1 8a4 4 0 01-8 0z"/><path d="M12 15v6M8.5 21h7"/>',
+    icecream: '<path d="M7 10a5 5 0 0110 0"/><path d="M6 10h12l-6 11z"/><path d="M9 14.5l6-3M10.5 17.5l3.5-1.8"/>',
     cup: '<path d="M4 8h13v5a6 6 0 01-6 6h-1a6 6 0 01-6-6z"/><path d="M17 10h1.5a2.5 2.5 0 010 5H17"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>'
   };
@@ -207,11 +208,11 @@
     var img = d.img ? '<div class="card__img" style="background-image:url(\'' + imgUrl(d.img) + '\')">'
                     : '<div class="card__img card__img--none">';
     return '<button class="card" data-dish="' + d.id + '">' +
-      img + '<span class="num">' + esc(d.num) + '</span><span class="card__tags">' + tagsHtml(d, false) + '</span></div>' +
+      img + (d.num ? '<span class="num">' + esc(d.num) + '</span>' : '') + '<span class="card__tags">' + tagsHtml(d, false) + '</span></div>' +
       '<div class="card__body">' +
         '<div class="card__name">' + esc(d.name) + ' <span class="card__ko" lang="ko">' + esc(d.ko) + '</span></div>' +
         '<div class="card__title">' + esc(d._cat.showDesc ? t.title + ' — ' + t.desc : t.title) + '</div>' +
-        '<div class="card__foot"><span class="price">' + priceHtml(d) + '</span>' +
+        '<div class="card__foot"><span class="price' + (String(d.price).split('/').length > 2 ? ' price--long' : '') + '">' + priceHtml(d) + '</span>' +
         (d.rice ? '<span class="more">' + SVG_RICE + '</span>' : '<span class="more"></span>') + '</div>' +
       '</div></button>';
   }
@@ -353,7 +354,7 @@
     if (d.img) { imgEl.style.backgroundImage = "url('" + imgLargeUrl(d.img) + "'), url('" + imgUrl(d.img) + "')"; imgEl.hidden = false; }
     else imgEl.hidden = true;
     $('#modal-body').innerHTML =
-      '<div class="m-num"><span class="num">' + esc(d.num) + '</span>' + esc(cat.title) + '</div>' +
+      '<div class="m-num">' + (d.num ? '<span class="num">' + esc(d.num) + '</span>' : '') + esc(cat.title) + '</div>' +
       '<h2 class="m-name">' + esc(d.name) + '</h2>' +
       '<div class="m-ko" lang="ko">' + esc(d.ko) + '</div>' +
       '<div class="m-title">' + esc(t.title) + '</div>' +
@@ -361,7 +362,7 @@
       '<div class="m-tags">' + tagsHtml(d, true) + '</div>' +
       '<div class="price m-price">' + priceHtml(d) + '</div>' +
       (d.al && d.al.length ? '<div class="m-al"><b>' + esc(ui('alDish')) + '</b>' + d.al.map(function (k) { return '<span class="al-tag">' + esc(alName(k)) + '</span>'; }).join('') + '</div>' : '') +
-      '<div class="m-order"><div><span class="num">' + esc(d.num) + '</span><span>' + ui('order').replace('{n}', esc(d.num)) + '</span></div>' +
+      '<div class="m-order">' + (d.num ? '<div><span class="num">' + esc(d.num) + '</span><span>' + ui('order').replace('{n}', esc(d.num)) + '</span></div>' : '') +
       '<p class="m-allerg">' + esc(ui('allergens')) + '</p></div>';
     var many = visibleDishes().length > 1;
     $$('.modal__nav').forEach(function (b) {
