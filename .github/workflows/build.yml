@@ -1,0 +1,64 @@
+name: Build (APK + site)
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: Android APK
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build APK
+        working-directory: android
+        run: gradle --no-daemon assembleRelease -PversionCode=$((100 + GITHUB_RUN_NUMBER))
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/release/app-release.apk jalmogoyo-menu.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jalmogoyo-menu-apk
+          path: jalmogoyo-menu.apk
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v1.$((100 + GITHUB_RUN_NUMBER))" jalmogoyo-menu.apk \
+            --target "$GITHUB_SHA" --latest \
+            --title "Jalmogoyo Menu 1.$((100 + GITHUB_RUN_NUMBER))" \
+            --notes "APK pour tablette Android. Installer jalmogoyo-menu.apk."
+
+  site:
+    name: Online version (GitHub Pages)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: www
+      - id: deploy
+        uses: actions/deploy-pages@v4

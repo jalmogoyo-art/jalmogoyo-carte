@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Jalmogoyo – Menu</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/brand/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- ===================== WELCOME / LANGUAGE ===================== -->
+  <section id="welcome" class="welcome" aria-label="Welcome">
+    <div class="welcome__petals" aria-hidden="true"><i class="pt pt--tr"></i><i class="pt pt--bl"></i></div>
+    <div class="welcome__inner">
+      <img class="welcome__crane" src="img/brand/crane-cream.png" alt="">
+      <img class="welcome__logo" src="img/brand/logo.png" alt="Jalmogoyo – Restaurant coréen – 잘 먹어요">
+      <p class="welcome__prompt">
+        <span>Choisissez votre langue</span><span>Choose your language</span><span>Sprache wählen</span><span>언어를 선택하세요</span>
+      </p>
+      <div class="welcome__langs">
+        <button class="lang-btn" data-lang="fr"><span class="flag flag--fr"></span>Français</button>
+        <button class="lang-btn" data-lang="en"><span class="flag flag--en"></span>English</button>
+        <button class="lang-btn" data-lang="de"><span class="flag flag--de"></span>Deutsch</button>
+        <button class="lang-btn" data-lang="ko"><span class="flag flag--ko"></span>한국어</button>
+      </div>
+    </div>
+    <p class="welcome__hours" id="welcome-hours"></p>
+  </section>
+
+  <!-- ===================== MENU ===================== -->
+  <div id="app" class="app" hidden>
+    <aside class="side">
+      <button class="side__brand" id="home-btn" aria-label="Accueil">
+        <img src="img/brand/crane-cream.png" alt="" class="side__crane">
+        <img src="img/brand/logo.png" alt="Jalmogoyo" class="side__logo">
+      </button>
+      <nav class="side__nav" id="nav"></nav>
+      <div class="side__langs" id="side-langs"></div>
+    </aside>
+
+    <div class="main-wrap">
+    <div class="bg-petals" aria-hidden="true"><i class="pt pt--tr"></i><i class="pt pt--bl"></i></div>
+    <main class="main" id="main">
+      <div class="toolbar" id="toolbar">
+        <div class="filters" id="filters"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div id="banner"></div>
+      <div id="sections"></div>
+      <footer class="info" id="info"></footer>
+    </main>
+    </div>
+  </div>
+
+  <!-- ===================== DISH DETAIL ===================== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <article class="modal__card" role="dialog" aria-modal="true">
+      <button class="modal__close" data-close aria-label="Fermer">&times;</button>
+      <div class="modal__img" id="modal-img"></div>
+      <div class="modal__body" id="modal-body"></div>
+    </article>
+  </div>
+
+  <!-- ===================== ALLERGEN PICKER ===================== -->
+  <div class="modal" id="allergen-panel" hidden>
+    <div class="modal__backdrop" data-close-al></div>
+    <article class="al-panel" role="dialog" aria-modal="true">
+      <button class="modal__close" data-close-al aria-label="Fermer">&times;</button>
+      <h2 class="al-panel__title" id="al-title"></h2>
+      <p class="al-panel__sub" id="al-sub"></p>
+      <div class="al-grid" id="al-grid"></div>
+      <p class="al-panel__warn" id="al-warn"></p>
+      <div class="al-panel__actions">
+        <button class="btn btn--ghost" id="al-clear"></button>
+        <button class="btn btn--red" id="al-ok" data-close-al></button>
+      </div>
+    </article>
+  </div>
+
+  <script src="js/menu-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

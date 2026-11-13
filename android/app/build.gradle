@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+// The CI passes -PversionCode=<n> so each build can be installed over the previous one.
+def buildNumber = (project.findProperty('versionCode') ?: '1') as int
+
+android {
+    namespace 'com.jalmogoyo.menu'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.jalmogoyo.menu'
+        minSdk 21
+        targetSdk 34
+        versionCode buildNumber
+        versionName "1.${buildNumber}"
+    }
+
+    // The menu itself lives in /www (same files as the online version).
+    sourceSets {
+        main.assets.srcDirs = ['../../www']
+    }
+
+    // Fixed key kept in the repo so every build has the same signature
+    // (otherwise the tablet would refuse to update the app in place).
+    signingConfigs {
+        shared {
+            storeFile file('../keystore/jalmogoyo.jks')
+            storePassword 'jalmogoyo'
+            keyAlias 'jalmogoyo'
+            keyPassword 'jalmogoyo'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.shared
+        }
+        debug {
+            signingConfig signingConfigs.shared
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
