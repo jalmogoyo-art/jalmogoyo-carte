@@ -221,7 +221,9 @@
     var many = d.sizes && d.sizes.length > 1;
     var one = d.sizes && d.sizes.length === 1 ? d.sizes[0] : null;
     var size = one ? one[0] : d.size;
-    return '<div class="drink' + (many ? ' drink--sizes' : '') + '"><div class="drink__main">' +
+    return '<div class="drink' + (many ? ' drink--sizes' : '') + '">' +
+      (d.img ? '<button class="drink__photo" data-drink="' + d.id + '" aria-label="' + esc(t.title) + '" style="background-image:url(\'' + imgUrl(d.img) + '\')"></button>' : '') +
+      '<div class="drink__main">' +
       '<span class="drink__title">' + esc(t.title) + '</span>' +
       (d.year ? '<span class="drink__size">' + esc(d.year) + '</span>' : '') +
       (size && !many ? '<span class="drink__size">' + esc(size) + '</span>' : '') +
@@ -349,6 +351,7 @@
     var t = tr(d.t);
     var cat = tr(d._cat.t);
     var imgEl = $('#modal-img');
+    imgEl.classList.remove('modal__img--drink');
     // large photo on top, card photo underneath: something shows at once while the large one loads
     if (d.img) { imgEl.style.backgroundImage = "url('" + imgLargeUrl(d.img) + "'), url('" + imgUrl(d.img) + "')"; imgEl.hidden = false; }
     else imgEl.hidden = true;
@@ -378,6 +381,35 @@
     $('#modal').hidden = false;
   }
   function closeDish() { $('#modal').hidden = true; currentDish = null; }
+
+  /* Enlarged photo of a drink (same window as a dish, without number or browsing arrows) */
+  function openDrink(id) {
+    var d = null, cat = null;
+    DATA.categories.forEach(function (c) {
+      if (c.drinks) c.items.forEach(function (x) { if (x.id === id) { d = x; cat = c; } });
+    });
+    if (!d || !d.img) return;
+    currentDish = null;
+    var t = tr(d.t);
+    var g = (cat.groups || []).filter(function (x) { return x.id === d.group; })[0];
+    var imgEl = $('#modal-img');
+    imgEl.style.backgroundImage = "url('" + imgLargeUrl(d.img) + "'), url('" + imgUrl(d.img) + "')";
+    imgEl.hidden = false;
+    imgEl.classList.add('modal__img--drink');
+    $$('.modal__nav').forEach(function (b) { b.hidden = true; });
+    var sizes = d.sizes
+      ? d.sizes.map(function (s) { return esc(s[0]) + ' ' + fmtOne(s[1]); }).join(' · ')
+      : fmtPrice(d.price);
+    $('#modal-body').innerHTML =
+      '<div class="m-num">' + esc(tr(cat.t).title) + (g ? ' · ' + esc(tr(g.t)) : '') + '</div>' +
+      '<h2 class="m-name">' + esc(t.title) + '</h2>' +
+      (d.size && !d.sizes ? '<div class="m-ko">' + esc(d.size) + '</div>' : '') +
+      (t.desc ? '<p class="m-desc">' + esc(t.desc) + '</p>' : '') +
+      '<div class="price m-price">' + sizes + '</div>' +
+      (cat.note ? '<div class="m-order"><p class="m-allerg">' + esc(tr(cat.note)) + '</p></div>' : '');
+    $('#modal-body').scrollTop = 0;
+    $('#modal').hidden = false;
+  }
 
   function renderAllergenPanel() {
     $('#al-title').textContent = ui('alTitle');
@@ -525,6 +557,7 @@
       renderToolbar(); renderSections(); updateActiveNav();
       return;
     }
+    if (el.classList.contains('drink__photo')) { openDrink(el.getAttribute('data-drink')); return; }
     if (el.classList.contains('card')) { openDish(el.getAttribute('data-dish')); }
   });
 

@@ -396,6 +396,7 @@ window.MENU_DATA = {
      * Item fields: group (one of groups[].id), sub (sub-heading inside a group, e.g. wine colour),
      *   size + price ("25 cl / 50 cl" + "3,50 / 6,80" for two sizes), or sizes: [['12 cl', 6.5], …]
      *   year (vintage), bio: true (organic), korean: true (Korean speciality).
+     *   img: photo in img/dishes/ (optional) — shown as a thumbnail, tap to enlarge.
      * Source: Tasty Cloud card, November 2026. */
     {
       id: 'drinks', icon: 'glass', drinks: true,
@@ -436,9 +437,9 @@ window.MENU_DATA = {
           t: { fr: { title: 'Virgin Spritz (sans alcool)', desc: 'Un spritz pétillant aux saveurs d’orange et d’épices' }, en: { title: 'Virgin Spritz (alcohol-free)', desc: 'A sparkling spritz with orange and spice flavours' }, de: { title: 'Virgin Spritz (alkoholfrei)', desc: 'Ein prickelnder Spritz mit Orangen- und Gewürznoten' }, ko: { title: '버진 스프리츠 (무알코올)', desc: '오렌지와 향신료 풍미의 스파클링 스프리츠' } } },
         { id: 'd-virgin', group: 'aperitifs', size: '25 cl', price: 5,
           t: { fr: { title: 'Cocktail sans alcool', desc: 'Jus d’ananas, de papaye, d’orange, de goyave et de banane, sirop de grenadine' }, en: { title: 'Alcohol-free cocktail', desc: 'Pineapple, papaya, orange, guava and banana juices, grenadine syrup' }, de: { title: 'Alkoholfreier Cocktail', desc: 'Ananas-, Papaya-, Orangen-, Guaven- und Bananensaft, Grenadinesirup' }, ko: { title: '무알코올 칵테일', desc: '파인애플, 파파야, 오렌지, 구아바, 바나나 주스와 석류 시럽' } } },
-        { id: 'd-cremant', group: 'aperitifs', size: '12 cl / 75 cl', price: '7 / 37',
+        { id: 'd-cremant', img: 'drink-cremant', group: 'aperitifs', size: '12 cl / 75 cl', price: '7 / 37',
           t: { fr: { title: 'Crémant d’Alsace', desc: 'AOP – Brut Prestige · la coupe ou la bouteille' }, en: { title: 'Crémant d’Alsace (sparkling wine)', desc: 'AOP – Brut Prestige · by the glass or the bottle' }, de: { title: 'Crémant d’Alsace (Sekt)', desc: 'AOP – Brut Prestige · Glas oder Flasche' }, ko: { title: '크레망 달자스 (스파클링 와인)', desc: 'AOP – 브뤼 프레스티지 · 잔 또는 병' } } },
-        { id: 'd-champagne', group: 'aperitifs', size: '75 cl', price: 90,
+        { id: 'd-champagne', img: 'drink-ruinart', group: 'aperitifs', size: '75 cl', price: 90,
           t: { fr: { title: 'Champagne « R » de Ruinart', desc: 'Brut' }, en: { title: 'Champagne “R” de Ruinart', desc: 'Brut' }, de: { title: 'Champagner „R“ de Ruinart', desc: 'Brut' }, ko: { title: '샴페인 «R» 드 뤼나르', desc: '브뤼' } } },
         { id: 'd-kir', group: 'aperitifs', size: '12 cl', price: 7.5,
           t: { fr: { title: 'Kir royal' }, en: { title: 'Kir royal' }, de: { title: 'Kir Royal' }, ko: { title: '키르 루아얄' } } },
@@ -450,7 +451,7 @@ window.MENU_DATA = {
           t: { fr: { title: 'Martini (rouge / blanc)' }, en: { title: 'Martini (red / white)' }, de: { title: 'Martini (rot / weiß)' }, ko: { title: '마티니 (로쏘 / 비앙코)' } } },
         { id: 'd-whisky', group: 'aperitifs', size: '4 cl', price: 7,
           t: { fr: { title: 'Whisky Jack Daniel’s' }, en: { title: 'Jack Daniel’s whiskey' }, de: { title: 'Whiskey Jack Daniel’s' }, ko: { title: '잭 다니엘 위스키' } } },
-        { id: 'd-korean-beer', group: 'beers', size: '33 cl', price: 6.95, korean: true,
+        { id: 'd-korean-beer', img: 'drink-kloud', group: 'beers', size: '33 cl', price: 6.95, korean: true,
           t: { fr: { title: 'Bière coréenne' }, en: { title: 'Korean beer' }, de: { title: 'Koreanisches Bier' }, ko: { title: '한국 맥주' } } },
         { id: 'd-spezial', group: 'beers', size: '25 cl / 50 cl', price: '3,50 / 6,80',
           t: { fr: { title: 'Alpirsbacher Spezial', desc: 'Bière blonde pression' }, en: { title: 'Alpirsbacher Spezial', desc: 'Draught lager' }, de: { title: 'Alpirsbacher Spezial', desc: 'Helles Bier vom Fass' }, ko: { title: '알피르스바허 슈페치알', desc: '라거 생맥주' } } },
@@ -460,7 +461,7 @@ window.MENU_DATA = {
           t: { fr: { title: 'Licorne Black', desc: 'Bière pression' }, en: { title: 'Licorne Black', desc: 'Draught beer' }, de: { title: 'Licorne Black', desc: 'Bier vom Fass' }, ko: { title: '리코른 블랙', desc: '생맥주' } } },
         { id: 'd-grimbergen', group: 'beers', size: '25 cl / 50 cl', price: '4,80 / 9,20',
           t: { fr: { title: 'Grimbergen', desc: 'Bière d’automne' }, en: { title: 'Grimbergen', desc: 'Autumn beer' }, de: { title: 'Grimbergen', desc: 'Herbstbier' }, ko: { title: '그림버겐', desc: '가을 맥주' } } },
-        { id: 'd-nabeer', group: 'beers', size: '33 cl', price: 3.9,
+        { id: 'd-nabeer', img: 'drink-alpirsbacher-00', group: 'beers', size: '33 cl', price: 3.9,
           t: { fr: { title: 'Bière sans alcool', desc: 'Alpirsbacher' }, en: { title: 'Alcohol-free beer', desc: 'Alpirsbacher' }, de: { title: 'Alkoholfreies Bier', desc: 'Alpirsbacher' }, ko: { title: '무알코올 맥주', desc: '알피르스바허' } } },
         { id: 'd-picon', group: 'beers', size: '25 cl / 50 cl', price: '3,90 / 7,50',
           t: { fr: { title: 'Amer – Cynar – Picon bière' }, en: { title: 'Beer with Amer, Cynar or Picon' }, de: { title: 'Bier mit Amer, Cynar oder Picon' }, ko: { title: '아메르 · 치나르 · 피콩 비어' } } },
