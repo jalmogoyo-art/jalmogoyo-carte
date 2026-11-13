@@ -82,7 +82,7 @@ if (!data || !Array.isArray(data.categories) || !data.categories.length) {
       }
       checkTexts(w, d.t, true);
       if (!c.drinks) {
-        if (d.num == null || d.num === '') err(w, 'numéro manquant (num)');
+        if (!c.noNum && (d.num == null || d.num === '')) err(w, 'numéro manquant (num)');
         if (!d.name) err(w, 'nom manquant (name)');
         if (d.spicy != null && ![0, 1, 2].includes(d.spicy)) err(w, 'spicy doit valoir 0, 1 ou 2');
         for (const a of d.al || []) if (!ALLERGENS.includes(a)) err(w, 'allergène inconnu : ' + a);
