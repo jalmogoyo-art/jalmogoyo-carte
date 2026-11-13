@@ -321,44 +321,44 @@ window.MENU_DATA = {
     {
       id: 'bibimbap', icon: 'stone',
       t: {
-        fr: { title: 'Les bibimbaps', sub: 'Préparés dans un bol de pierre chaude' },
-        en: { title: 'Bibimbap', sub: 'Prepared in a hot stone bowl' },
-        de: { title: 'Bibimbap', sub: 'Im heißen Steintopf zubereitet' },
+        fr: { title: 'Dolsot bibimbap', sub: 'Servis dans un bol en pierre chauffé (dolsot, 돌솥)' },
+        en: { title: 'Dolsot bibimbap', sub: 'Served in a heated stone bowl (dolsot, 돌솥)' },
+        de: { title: 'Dolsot-Bibimbap', sub: 'Im heißen Steintopf serviert (Dolsot, 돌솥)' },
         ko: { title: '돌솥 비빔밥', sub: '뜨거운 돌솥에 제공됩니다' }
       },
       intro: {
-        fr: 'Le bibimbap (« riz mélangé ») : du riz garni de légumes et d’un ingrédient au choix. Ajoutez la sauce pimentée selon votre goût et mélangez bien. Le bol est brûlant : le riz devient croustillant au fond !',
-        en: 'Bibimbap (“mixed rice”): rice topped with vegetables and your choice of topping. Add chili paste to taste and mix well. The bowl is very hot: the rice turns crispy at the bottom!',
-        de: 'Bibimbap („gemischter Reis“): Reis mit Gemüse und einer Zutat nach Wahl. Chilipaste nach Geschmack dazugeben und gut mischen. Der Topf ist sehr heiß: Der Reis wird unten knusprig!',
-        ko: '비빔밥: 밥 위에 나물과 재료를 올렸어요. 고추장을 취향껏 넣고 잘 비벼 드세요. 돌솥이 뜨거우니 조심하세요. 바닥의 누룽지도 별미예요!'
+        fr: 'Le dolsot bibimbap : « dolsot » désigne le bol en pierre, « bibimbap » le riz mélangé. Du riz garni de légumes et d’un ingrédient au choix. Ajoutez la sauce pimentée selon votre goût et mélangez bien. Le bol est brûlant : le riz devient croustillant au fond !',
+        en: 'Dolsot bibimbap: “dolsot” is the stone bowl, “bibimbap” means mixed rice. Rice topped with vegetables and your choice of topping. Add chili paste to taste and mix well. The bowl is very hot: the rice turns crispy at the bottom!',
+        de: 'Dolsot-Bibimbap: „Dolsot“ ist der Steintopf, „Bibimbap“ bedeutet gemischter Reis. Reis mit Gemüse und einer Zutat nach Wahl. Chilipaste nach Geschmack dazugeben und gut mischen. Der Topf ist sehr heiß: Der Reis wird unten knusprig!',
+        ko: '돌솥 비빔밥: 밥 위에 나물과 재료를 올렸어요. 고추장을 취향껏 넣고 잘 비벼 드세요. 돌솥이 뜨거우니 조심하세요. 바닥의 누룽지도 별미예요!'
       },
       items: [
-        { id: 'bibimbap-seafood', al: ['crustaceans', 'molluscs', 'eggs', 'soy', 'gluten', 'sesame'], num: '32', name: 'Haemul Bibimbap', ko: '해물 비빔밥', price: 23, img: 'bibimbap-seafood',
+        { id: 'bibimbap-seafood', al: ['crustaceans', 'molluscs', 'eggs', 'soy', 'gluten', 'sesame'], num: '32', name: 'Haemul Dolsot Bibimbap', ko: '해물 돌솥 비빔밥', price: 23, img: 'bibimbap-seafood',
           t: {
-            fr: { title: 'Bibimbap aux fruits de mer', desc: 'Riz, légumes et fruits de mer dans un bol de pierre chaude.' },
-            en: { title: 'Seafood bibimbap', desc: 'Rice, vegetables and seafood in a hot stone bowl.' },
-            de: { title: 'Bibimbap mit Meeresfrüchten', desc: 'Reis, Gemüse und Meeresfrüchte im heißen Steintopf.' },
+            fr: { title: 'Dolsot bibimbap aux fruits de mer', desc: 'Riz, légumes et fruits de mer dans un bol de pierre chaude.' },
+            en: { title: 'Seafood dolsot bibimbap', desc: 'Rice, vegetables and seafood in a hot stone bowl.' },
+            de: { title: 'Dolsot-Bibimbap mit Meeresfrüchten', desc: 'Reis, Gemüse und Meeresfrüchte im heißen Steintopf.' },
             ko: { title: '해물 돌솥 비빔밥', desc: '밥, 나물, 해물을 뜨거운 돌솥에 담았어요.' }
           } },
-        { id: 'bibimbap-beef', al: ['eggs', 'soy', 'gluten', 'sesame'], num: '33', name: 'Sogogi Bibimbap', ko: '소고기 비빔밥', price: 22, img: 'bibimbap-beef',
+        { id: 'bibimbap-beef', al: ['eggs', 'soy', 'gluten', 'sesame'], num: '33', name: 'Sogogi Dolsot Bibimbap', ko: '소고기 돌솥 비빔밥', price: 22, img: 'bibimbap-beef',
           t: {
-            fr: { title: 'Bibimbap au bœuf', desc: 'Riz, légumes et bœuf dans un bol de pierre chaude.' },
-            en: { title: 'Beef bibimbap', desc: 'Rice, vegetables and beef in a hot stone bowl.' },
-            de: { title: 'Bibimbap mit Rindfleisch', desc: 'Reis, Gemüse und Rindfleisch im heißen Steintopf.' },
+            fr: { title: 'Dolsot bibimbap au bœuf', desc: 'Riz, légumes et bœuf dans un bol de pierre chaude.' },
+            en: { title: 'Beef dolsot bibimbap', desc: 'Rice, vegetables and beef in a hot stone bowl.' },
+            de: { title: 'Dolsot-Bibimbap mit Rindfleisch', desc: 'Reis, Gemüse und Rindfleisch im heißen Steintopf.' },
             ko: { title: '소고기 돌솥 비빔밥', desc: '밥, 나물, 소고기를 뜨거운 돌솥에 담았어요.' }
           } },
-        { id: 'bibimbap-salmon', al: ['fish', 'eggs', 'soy', 'gluten', 'sesame'], num: '34', name: 'Yeoneo Bibimbap', ko: '연어 비빔밥', price: 22, img: 'bibimbap-salmon',
+        { id: 'bibimbap-salmon', al: ['fish', 'eggs', 'soy', 'gluten', 'sesame'], num: '34', name: 'Yeoneo Dolsot Bibimbap', ko: '연어 돌솥 비빔밥', price: 22, img: 'bibimbap-salmon',
           t: {
-            fr: { title: 'Bibimbap au saumon', desc: 'Riz, légumes et saumon dans un bol de pierre chaude.' },
-            en: { title: 'Salmon bibimbap', desc: 'Rice, vegetables and salmon in a hot stone bowl.' },
-            de: { title: 'Bibimbap mit Lachs', desc: 'Reis, Gemüse und Lachs im heißen Steintopf.' },
+            fr: { title: 'Dolsot bibimbap au saumon', desc: 'Riz, légumes et saumon dans un bol de pierre chaude.' },
+            en: { title: 'Salmon dolsot bibimbap', desc: 'Rice, vegetables and salmon in a hot stone bowl.' },
+            de: { title: 'Dolsot-Bibimbap mit Lachs', desc: 'Reis, Gemüse und Lachs im heißen Steintopf.' },
             ko: { title: '연어 돌솥 비빔밥', desc: '밥, 나물, 연어를 뜨거운 돌솥에 담았어요.' }
           } },
-        { id: 'bibimbap-veg', al: ['eggs', 'soy', 'gluten', 'sesame'], num: '35', name: 'Yachae Bibimbap', ko: '야채 비빔밥', price: 17, img: 'bibimbap-veg', veg: true,
+        { id: 'bibimbap-veg', al: ['eggs', 'soy', 'gluten', 'sesame'], num: '35', name: 'Yachae Dolsot Bibimbap', ko: '야채 돌솥 비빔밥', price: 17, img: 'bibimbap-veg', veg: true,
           t: {
-            fr: { title: 'Bibimbap végétarien', desc: 'Riz et mélange de légumes de saison dans un bol de pierre chaude.' },
-            en: { title: 'Vegetarian bibimbap', desc: 'Rice and mixed seasonal vegetables in a hot stone bowl.' },
-            de: { title: 'Vegetarisches Bibimbap', desc: 'Reis und Gemüse der Saison im heißen Steintopf.' },
+            fr: { title: 'Dolsot bibimbap végétarien', desc: 'Riz et mélange de légumes de saison dans un bol de pierre chaude.' },
+            en: { title: 'Vegetarian dolsot bibimbap', desc: 'Rice and mixed seasonal vegetables in a hot stone bowl.' },
+            de: { title: 'Vegetarisches Dolsot-Bibimbap', desc: 'Reis und Gemüse der Saison im heißen Steintopf.' },
             ko: { title: '야채 돌솥 비빔밥', desc: '밥과 제철 채소를 뜨거운 돌솥에 담았어요.' }
           } }
       ]
