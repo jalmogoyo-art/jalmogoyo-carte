@@ -21,7 +21,7 @@
       alClear: 'Tout effacer', alOk: 'Voir les plats', alHidden: 'Plats masqués car ils contiennent :', alReset: 'Effacer le filtre',
       alDish: 'Allergènes (indicatif)',
       veg: 'Végétarien', notSpicy: 'Non piquant', spicy: 'Piquant', slightly: 'Légèrement piquant',
-      two: 'Pour 2 pers. minimum', twoShort: '2 pers.', rice: 'Riz & petits mets inclus',
+      two: 'Minimum requis 2 personnes', twoShort: '2 pers.', rice: 'Riz & petits mets inclus',
       details: 'Détails', info: 'Infos', prev: 'Plat précédent', next: 'Plat suivant', korean: 'Corée', bio: 'Bio', home: 'Accueil',
       allergens: 'Tableau des allergènes disponible sur demande.',
       none: 'Aucun plat ne correspond à ce filtre. Demandez conseil à notre équipe : certains plats peuvent parfois être adaptés.',

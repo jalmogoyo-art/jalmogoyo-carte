@@ -1,5 +1,5 @@
 /*
- * JALMOGOYO – menu content (source: restaurant menu PDF, "Mars 2023").
+ * JALMOGOYO – menu content (same dishes and prices as the printed menu, edition "Novembre 2026").
  * To change a price or a dish, edit this file only.
  *
  * Dish fields:
@@ -23,7 +23,7 @@
  *           are automatic — see js/schedule.js.
  */
 window.MENU_DATA = {
-  version: 'Mars 2023',
+  version: 'Novembre 2026',
   // Extra days without lunch menus (bridge day, exceptional closure…), format 'YYYY-MM-DD'.
   // Public holidays do NOT need to be listed here: they are automatic.
   closedDays: [],
@@ -35,20 +35,20 @@ window.MENU_DATA = {
     {
       id: 'suggestions', icon: 'star',
       t: {
-        fr: { title: 'Suggestions', sub: 'Pour 2 personnes minimum · prix par personne' },
-        en: { title: 'Chef’s suggestions', sub: 'For 2 persons minimum · price per person' },
-        de: { title: 'Empfehlungen', sub: 'Ab 2 Personen · Preis pro Person' },
+        fr: { title: 'Suggestions', sub: 'Minimum requis 2 personnes · prix par personne' },
+        en: { title: 'Chef’s suggestions', sub: 'Minimum 2 persons · price per person' },
+        de: { title: 'Empfehlungen', sub: 'Mindestens 2 Personen · Preis pro Person' },
         ko: { title: '추천 메뉴', sub: '2인 이상 주문 · 1인 가격' }
       },
       items: [
-        { id: 'bbq-assortment', al: ['gluten', 'soy', 'sesame', 'crustaceans'], num: '40', name: 'Modeum Gui', ko: '모둠 구이', price: 34, img: 'bbq-assortment', two: true, rice: true,
+        { id: 'bbq-assortment', al: ['gluten', 'soy', 'sesame', 'crustaceans'], num: '40', name: 'Modeum Gui', ko: '모둠 구이', price: 33, img: 'bbq-assortment', two: true, rice: true,
           t: {
-            fr: { title: 'Barbecue assortiment', desc: 'Assortiment à griller vous-même à table : bœuf, poulet, agneau, canard et crevettes. Le meilleur moyen de tout goûter !' },
+            fr: { title: 'Barbecue mixte', desc: 'Assortiment à griller vous-même à table : bœuf, poulet, agneau, canard et crevettes. Le meilleur moyen de tout goûter !' },
             en: { title: 'Mixed barbecue', desc: 'A platter to grill yourself at the table: beef, chicken, lamb, duck and shrimps. The best way to taste everything!' },
             de: { title: 'Gemischtes Barbecue', desc: 'Platte zum Selbstgrillen am Tisch: Rind, Huhn, Lamm, Ente und Garnelen. Die beste Art, alles zu probieren!' },
             ko: { title: '모둠 구이', desc: '테이블에서 직접 구워 먹는 모둠: 소고기, 닭고기, 양고기, 오리고기, 새우. 모든 맛을 한 번에!' }
           } },
-        { id: 'fondue', al: ['gluten', 'soy', 'sesame', 'eggs'], num: '24', name: 'Sogogi Jeongol', ko: '소고기 전골', price: 33, img: 'fondue', two: true,
+        { id: 'fondue', al: ['gluten', 'soy', 'sesame', 'eggs'], num: '24', name: 'Sogogi Jeongol', ko: '소고기 전골', price: 32, img: 'fondue', two: true,
           t: {
             fr: { title: 'Fondue coréenne', desc: 'Bouillon chaud à table dans lequel on cuit bœuf, chou chinois, légumes frais et nouilles coréennes. Servie avec les petits mets.' },
             en: { title: 'Korean hot pot', desc: 'Hot broth at the table to cook beef, Chinese cabbage, fresh vegetables and Korean noodles. Served with small side dishes.' },
@@ -76,14 +76,14 @@ window.MENU_DATA = {
         ko: '전채 선택: 군만두 3개 (닭고기 또는 야채) 또는 해물파전 3조각. 모든 메뉴는 공기밥과 반찬이 함께 제공됩니다.'
       },
       items: [
-        { id: 'lunch-a', al: ['gluten', 'soy', 'sesame'], num: 'A', name: 'Jeyuk / Dak Bokkeum', ko: '제육볶음 / 닭볶음', price: 16, img: 'jeyuk-bokkeum', spicy: 2, rice: true,
+        { id: 'lunch-a', al: ['gluten', 'soy', 'sesame'], num: 'A', name: 'Jeyuk / Dak Bokkeum', ko: '제육볶음 / 닭볶음', price: 17, img: 'jeyuk-bokkeum', spicy: 2, rice: true,
           t: {
             fr: { title: 'Menu A', desc: 'Poitrine de porc ou émincé de poulet sauté à la sauce piquante.' },
             en: { title: 'Menu A', desc: 'Stir-fried pork belly or sliced chicken in spicy sauce.' },
             de: { title: 'Menü A', desc: 'Schweinebauch oder geschnetzeltes Hähnchen in scharfer Sauce gebraten.' },
             ko: { title: 'A 메뉴', desc: '매콤한 양념에 볶은 돼지 삼겹살 또는 닭고기.' }
           } },
-        { id: 'lunch-c', al: ['soy', 'gluten', 'fish', 'crustaceans'], num: 'C', name: 'Dubu Jjigae', ko: '두부찌개', price: 15, img: 'dubu-jjigae', spicy: 1, rice: true,
+        { id: 'lunch-c', al: ['soy', 'gluten', 'fish', 'crustaceans'], num: 'C', name: 'Dubu Jjigae', ko: '두부찌개', price: 16, img: 'dubu-jjigae', spicy: 1, rice: true,
           t: {
             fr: { title: 'Menu C', desc: 'Ragoût de tofu.' },
             en: { title: 'Menu C', desc: 'Tofu stew.' },
@@ -267,9 +267,9 @@ window.MENU_DATA = {
       items: [
         { id: 'bbq-beef', al: ['soy', 'gluten', 'sesame'], num: '23', name: 'So Deungsim', ko: '소고기 등심', price: 24, img: 'bbq-beef', two: true, rice: true,
           t: {
-            fr: { title: 'Barbecue bœuf (entrecôte)', desc: 'Entrecôte de bœuf à griller à table.' },
-            en: { title: 'Beef barbecue (rib-eye)', desc: 'Beef rib-eye to grill at your table.' },
-            de: { title: 'Rindfleisch-Barbecue (Entrecôte)', desc: 'Rinder-Entrecôte zum Grillen am Tisch.' },
+            fr: { title: 'Barbecue bœuf (noix de basse côte)', desc: 'Noix de basse côte de bœuf à griller à table.' },
+            en: { title: 'Beef barbecue (chuck eye)', desc: 'Beef chuck eye to grill at your table.' },
+            de: { title: 'Rindfleisch-Barbecue (Fehlrippe)', desc: 'Rinder-Fehlrippe zum Grillen am Tisch.' },
             ko: { title: '소고기 등심 구이', desc: '테이블에서 구워 먹는 소고기 등심.' }
           } },
         { id: 'bbq-lamb', al: ['soy', 'gluten', 'sesame'], num: '26', name: 'Yang Gogi', ko: '양고기 구이', price: 24, img: 'bbq-lamb', two: true, rice: true,
