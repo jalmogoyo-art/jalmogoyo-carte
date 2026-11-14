@@ -23,7 +23,6 @@
       veg: 'Végétarien', notSpicy: 'Non piquant', spicy: 'Piquant', slightly: 'Légèrement piquant',
       two: 'Pour 2 pers. minimum', twoShort: '2 pers.', rice: 'Riz & petits mets inclus',
       details: 'Détails', info: 'Infos', prev: 'Plat précédent', next: 'Plat suivant', korean: 'Corée', bio: 'Bio', home: 'Accueil',
-      order: 'Pour commander, indiquez simplement le numéro <b>{n}</b> à votre serveur.',
       allergens: 'Tableau des allergènes disponible sur demande.',
       none: 'Aucun plat ne correspond à ce filtre. Demandez conseil à notre équipe : certains plats peuvent parfois être adaptés.',
       infoHoursT: 'Horaires', infoHours: 'Du mardi au samedi<br>Midi 12h00 – 14h00 · Soir 19h00 – 22h00<br>Fermé le dimanche et le lundi',
@@ -41,7 +40,6 @@
       veg: 'Vegetarian', notSpicy: 'Not spicy', spicy: 'Spicy', slightly: 'Slightly spicy',
       two: 'Minimum 2 persons', twoShort: '2 pers.', rice: 'Rice & side dishes included',
       details: 'Details', info: 'Info', prev: 'Previous dish', next: 'Next dish', korean: 'Korea', bio: 'Organic', home: 'Home',
-      order: 'To order, simply tell your waiter number <b>{n}</b>.',
       allergens: 'Allergen information available on request.',
       none: 'No dish matches this filter. Please ask our team: some dishes can sometimes be adapted.',
       infoHoursT: 'Opening hours', infoHours: 'Tuesday to Saturday<br>Lunch 12:00 – 14:00 · Dinner 19:00 – 22:00<br>Closed on Sunday and Monday',
@@ -59,7 +57,6 @@
       veg: 'Vegetarisch', notSpicy: 'Nicht scharf', spicy: 'Scharf', slightly: 'Leicht scharf',
       two: 'Ab 2 Personen', twoShort: '2 Pers.', rice: 'Reis & Beilagen inklusive',
       details: 'Details', info: 'Infos', prev: 'Vorheriges Gericht', next: 'Nächstes Gericht', korean: 'Korea', bio: 'Bio', home: 'Start',
-      order: 'Zum Bestellen nennen Sie Ihrer Bedienung einfach die Nummer <b>{n}</b>.',
       allergens: 'Allergenliste auf Anfrage erhältlich.',
       none: 'Kein Gericht entspricht diesem Filter. Fragen Sie unser Team: Manche Gerichte können angepasst werden.',
       infoHoursT: 'Öffnungszeiten', infoHours: 'Dienstag bis Samstag<br>Mittags 12:00 – 14:00 · Abends 19:00 – 22:00<br>Sonntag und Montag Ruhetag',
@@ -77,7 +74,6 @@
       veg: '채식', notSpicy: '안 매운 메뉴', spicy: '매운맛', slightly: '약간 매운맛',
       two: '2인 이상 주문', twoShort: '2인', rice: '공기밥 · 반찬 포함',
       details: '자세히', info: '안내', prev: '이전 메뉴', next: '다음 메뉴', korean: '한국', bio: '유기농', home: '처음으로',
-      order: '주문하실 때 직원에게 <b>{n}</b>번이라고 말씀해 주세요.',
       allergens: '알레르기 정보는 요청 시 제공됩니다.',
       none: '조건에 맞는 메뉴가 없습니다. 직원에게 문의해 주세요. 일부 메뉴는 조정이 가능할 수 있습니다.',
       infoHoursT: '영업시간', infoHours: '화요일 ~ 토요일<br>점심 12:00 – 14:00 · 저녁 19:00 – 22:00<br>일요일 · 월요일 휴무',
@@ -365,8 +361,7 @@
       '<div class="m-tags">' + tagsHtml(d, true) + '</div>' +
       '<div class="price m-price">' + priceHtml(d) + '</div>' +
       (d.al && d.al.length ? '<div class="m-al"><b>' + esc(ui('alDish')) + '</b>' + d.al.map(function (k) { return '<span class="al-tag">' + esc(alName(k)) + '</span>'; }).join('') + '</div>' : '') +
-      '<div class="m-order">' + (d.num ? '<div><span class="num">' + esc(d.num) + '</span><span>' + ui('order').replace('{n}', esc(d.num)) + '</span></div>' : '') +
-      '<p class="m-allerg">' + esc(ui('allergens')) + '</p></div>';
+      '<div class="m-order"><p class="m-allerg">' + esc(ui('allergens')) + '</p></div>';
     var many = visibleDishes().length > 1;
     $$('.modal__nav').forEach(function (b) {
       b.hidden = !many;

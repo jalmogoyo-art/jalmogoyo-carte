@@ -246,8 +246,6 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .m-tags .tag { background: var(--cream-2); height: auto; padding: 8px 12px; font-weight: 500; font-size: 15px; }
 .m-price { margin-top: 22px; font-size: 40px; }
 .m-order { margin-top: auto; padding-top: 22px; }
-.m-order div { padding: 14px 16px; border-radius: 12px; background: var(--black); color: var(--cream); font-size: 16px; line-height: 1.45; display: flex; gap: 12px; align-items: center; }
-.m-order .num { background: var(--red); flex: 0 0 auto; height: 44px; min-width: 44px; font-size: 20px; }
 .m-allerg { margin-top: 10px; font-size: 13px; color: var(--grey); }
 
 @keyframes fade { from { opacity: 0; } }
