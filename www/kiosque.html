@@ -46,6 +46,22 @@
     ul { margin: 0; padding-left: 22px; }
     ul li { margin: 6px 0; }
     .warn { border-color: #6d1014; background: #1c0d0e; color: var(--cream); }
+    .print-only { display: none; }
+    /* Printed sheet (or "save as PDF"): black on white, to keep next to the tablets */
+    @media print {
+      :root { --black: #fff; --cream: #111; --line: #c8c8c8; --soft: #444; }
+      body { background: #fff; color: #111; font-size: 11.5pt; }
+      main { max-width: none; padding: 0; }
+      .logo { filter: brightness(0); width: 220px; }
+      h1 { font-size: 18pt; }
+      h2 { margin-top: 22px; break-after: avoid; }
+      b { color: #000; }
+      a { color: #111; }
+      .note, .warn { background: #fff; border-color: #999; color: #222; }
+      ol li, ul li, .note, .qr { break-inside: avoid; }
+      .qr--big img { width: 105mm; }
+      .print-only { display: block; }
+    }
   </style>
 </head>
 <body>
@@ -114,6 +130,7 @@
     Avec cette solution, le client ne peut pas quitter le menu sans le code PIN. En revanche, après chaque redémarrage,
     il faut saisir le PIN, rouvrir le menu et l’épingler de nouveau : rien n’est automatique.
   </div>
+  <p class="ver print-only">Cette fiche est à jour sur : jalmogoyo-art.github.io/jalmogoyo-carte/kiosque.html</p>
 </main>
 </body>
 </html>
