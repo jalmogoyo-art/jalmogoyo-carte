@@ -24,7 +24,7 @@ fs.writeFileSync(path.join(www, 'js', 'version.js'),
   '/* Replaced automatically at each publication (tools/stamp.js). */\n' +
   'window.APP_VERSION = ' + JSON.stringify(info) + ';\n');
 
-const skip = new Set(['sw.js', 'version.json', 'install.html']);
+const skip = new Set(['sw.js', 'version.json', 'install.html', 'kiosque.html']);
 const files = walk(www, '').filter((f) => !skip.has(f) && !f.startsWith('img/install/')).sort();
 const swPath = path.join(www, 'sw.js');
 let sw = fs.readFileSync(swPath, 'utf8');

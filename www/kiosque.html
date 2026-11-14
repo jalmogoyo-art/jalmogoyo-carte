@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="robots" content="noindex">
+  <title>Jalmogoyo – Mode kiosque</title>
+  <link rel="icon" href="img/brand/icon-192.png">
+  <style>
+    :root { --black: #0b0b0b; --cream: #ddd6b5; --red: #e3141d; --line: #2a2a2a; --soft: #a9a38a; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--black); color: var(--cream);
+      font-family: "Samsung Sans", "SamsungOne", Roboto, "Noto Sans", "Segoe UI", Arial, sans-serif;
+      font-size: 18px; line-height: 1.55; -webkit-text-size-adjust: 100%;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 20px 56px; }
+    .logo { display: block; width: min(300px, 70%); margin: 0 auto 8px; }
+    h1 { font-size: 26px; font-weight: 600; text-align: center; margin: 12px 0 6px; text-wrap: balance; }
+    .lead { text-align: center; color: var(--soft); margin: 0 0 28px; }
+    .btn {
+      display: block; text-align: center; text-decoration: none; background: var(--red); color: #fff;
+      font-size: 22px; font-weight: 600; padding: 20px 24px; border-radius: 16px;
+    }
+    .btn:active { background: #b30f16; }
+    .ver { text-align: center; font-size: 14px; color: var(--soft); margin: 10px 0 0; }
+    h2 { font-size: 15px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin: 40px 0 12px; }
+    ol { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    ol li { counter-increment: step; position: relative; padding: 14px 0 14px 54px; border-top: 1px solid var(--line); }
+    ol li:first-child { border-top: 0; }
+    ol li::before {
+      content: counter(step); position: absolute; left: 0; top: 13px; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--cream); display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    b { color: #fff; font-weight: 600; }
+    .note { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-top: 14px; color: var(--soft); font-size: 16px; }
+    .note b { color: var(--cream); }
+    .qr { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .qr img { width: 168px; height: 168px; border-radius: 12px; background: #fff; flex: 0 0 auto; }
+    .qr p { margin: 0; flex: 1 1 240px; }
+    a { color: var(--cream); }
+    code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; overflow-wrap: anywhere; }
+      .qr--big { justify-content: center; }
+    .qr--big img { width: min(495px, 100%); height: auto; aspect-ratio: 1; image-rendering: pixelated; }
+    ul { margin: 0; padding-left: 22px; }
+    ul li { margin: 6px 0; }
+    .warn { border-color: #6d1014; background: #1c0d0e; color: var(--cream); }
+  </style>
+</head>
+<body>
+<main>
+  <img class="logo" src="img/brand/logo.png" alt="Jalmogoyo – Restaurant coréen">
+  <h1>Mode kiosque : la tablette ne montre que le menu</h1>
+  <p class="lead">À faire une seule fois par tablette, au tout premier allumage.</p>
+
+  <h2>Ce que fait le mode kiosque</h2>
+  <ul>
+    <li>Quand on allume la tablette, le <b>menu s’affiche tout seul</b>, sans écran de verrouillage.</li>
+    <li>Le client <b>ne peut pas sortir du menu</b> : pas de bouton Accueil, pas d’autres applications, pas de paramètres, pas de notifications.</li>
+    <li>Le personnel retrouve toute la tablette avec un <b>geste caché et un code</b>.</li>
+    <li>Le menu continue de se <b>mettre à jour tout seul</b> par le Wi-Fi.</li>
+  </ul>
+
+  <div class="note warn">
+    <b>À savoir avant de commencer.</b> Le mode kiosque ne peut s’installer que sur une tablette <b>neuve, jamais configurée</b>,
+    ou <b>réinitialisée</b> (Paramètres → Gestion globale → Réinitialisation → Réinitialiser toutes les données — tout ce qui est
+    sur la tablette est effacé). Faites d’abord l’essai sur <b>une seule tablette</b>.
+  </div>
+
+  <h2>Mise en place</h2>
+  <ol>
+    <li>Allumez la tablette. Restez sur le <b>tout premier écran</b> (« Bienvenue »), sans toucher « Démarrer ».</li>
+    <li>Touchez <b>6 fois de suite</b> une zone vide de cet écran. Un lecteur de QR code s’ouvre
+      (si la tablette demande d’abord le Wi-Fi, connectez-la).</li>
+    <li>Scannez le <b>QR code ci-dessous</b>, affiché sur un téléphone ou un ordinateur.</li>
+    <li>Connectez la tablette au <b>Wi-Fi</b> du restaurant quand elle le demande, puis acceptez les écrans suivants.
+      Elle indique qu’elle est « gérée » ou qu’elle « appartient à votre organisation » : c’est normal, c’est ce qui permet le verrouillage.</li>
+    <li>Passez les étapes facultatives (compte Google, compte Samsung…).</li>
+    <li>Le menu s’affiche et vous demande de <b>choisir un code administrateur</b> (4 à 8 chiffres). Notez-le.</li>
+  </ol>
+
+  <div class="qr qr--big" style="margin-top: 22px">
+    <img src="img/install/qr-kiosque.svg" alt="QR code de mise en place du mode kiosque">
+  </div>
+  <p class="ver">Ce QR code ne se scanne que depuis l’écran « Bienvenue » d’une tablette. Il ne contient aucun mot de passe.</p>
+
+  <h2>Au quotidien</h2>
+  <ol>
+    <li><b>Accéder à la tablette (personnel)</b> : touchez <b>5 fois rapidement le coin en haut à droite</b> de l’écran,
+      saisissez le code, puis « Déverrouiller ». L’écran d’accueil Samsung habituel revient.</li>
+    <li><b>Revenir au menu verrouillé</b> : ouvrez l’application <b>Jalmogoyo Menu</b>. La tablette est de nouveau bloquée sur le menu.</li>
+    <li><b>Changer le code</b> : même geste, saisissez le code actuel, puis « Changer le code ».</li>
+    <li><b>Éteindre la tablette</b> : appui long sur la touche latérale (ou touche latérale + volume bas), puis « Éteindre ».</li>
+  </ol>
+  <div class="note">
+    <b>Code oublié ?</b> Il n’existe pas de code de secours. Il faut réinitialiser la tablette depuis le mode de récupération
+    Samsung (tablette éteinte : touches volume haut + latérale), puis refaire la mise en place.
+  </div>
+  <div class="note">
+    <b>Retirer le mode kiosque</b> : déverrouillez la tablette avec le code, puis réinitialisez-la depuis les paramètres.
+  </div>
+
+  <h2>Sans réinitialiser la tablette : la solution simple</h2>
+  <p>Si la tablette est déjà configurée et que vous ne voulez pas l’effacer, <a href="install.html">installez l’application normalement</a>,
+  puis utilisez la fonction Samsung d’épinglage :</p>
+  <ol>
+    <li>Définissez un <b>code PIN</b> de verrouillage d’écran sur la tablette.</li>
+    <li>Dans les paramètres, cherchez « <b>Épingler</b> », activez l’épinglage des applications et l’option qui
+      <b>demande le code PIN</b> pour désépingler.</li>
+    <li>Ouvrez Jalmogoyo Menu, affichez les applications récentes, touchez l’icône de l’application, puis « Épingler ».</li>
+  </ol>
+  <div class="note">
+    Avec cette solution, le client ne peut pas quitter le menu sans le code PIN. En revanche, après chaque redémarrage,
+    il faut saisir le PIN, rouvrir le menu et l’épingler de nouveau : rien n’est automatique.
+  </div>
+</main>
+</body>
+</html>

@@ -5,6 +5,7 @@ Menu numérique du restaurant coréen Jalmogoyo (Mulhouse) pour tablette Android
 ## Liens
 
 - **Installer sur une tablette** : https://jalmogoyo-art.github.io/jalmogoyo-carte/install.html
+- **Mode kiosque (tablette bloquée sur le menu)** : https://jalmogoyo-art.github.io/jalmogoyo-carte/kiosque.html
 - **Version en ligne** : https://jalmogoyo-art.github.io/jalmogoyo-carte/
 - **APK** : https://github.com/jalmogoyo-art/jalmogoyo-carte/releases/latest/download/jalmogoyo-menu.apk
 
@@ -42,6 +43,7 @@ ajouter la date dans `closedDays` en haut de `www/js/menu-data.js` (ex. `closedD
 | `www/js/menu-data.js` | Plats, prix, traductions, allergènes. **C'est le fichier à modifier.** |
 | `www/img/dishes/` | Photos des plats : `nom.jpg` (800 px de large, vignettes) et `large/nom.jpg` (1800 px, fiche du plat). |
 | `www/install.html` | Page d'installation pour les tablettes. |
+| `www/kiosque.html` | Mise en place du mode kiosque (QR code à scanner au premier allumage de la tablette). |
 | `android/` | Application Android plein écran (affiche la version en ligne, copie de secours incluse). |
 | `tools/` | Vérification du menu et numérotation des versions, lancées automatiquement. |
 | `.github/workflows/build.yml` | Vérifie, publie la version en ligne, construit l'APK. |
@@ -56,6 +58,18 @@ besoin d'être réinstallées pour un simple changement de menu.
 node tools/check-menu.js                # vérifie le menu
 cd www && python3 -m http.server 8000   # puis ouvrir http://localhost:8000
 ```
+
+## Mode kiosque
+
+Sur une tablette mise en place avec le QR code de `www/kiosque.html` (tablette neuve ou réinitialisée),
+l'application devient gestionnaire de l'appareil (« device owner ») : le menu est l'écran d'accueil,
+il s'affiche à l'allumage et on ne peut pas en sortir. Le personnel en sort par 5 appuis rapides dans
+le coin en haut à droite, puis un code choisi sur la tablette (jamais stocké en clair, absent du dépôt).
+Sur une tablette où l'application est simplement installée, rien de tout cela n'est actif.
+
+- Code : `android/app/src/main/java/com/jalmogoyo/menu/Kiosk.java` et `MainActivity.java`.
+- Contenu du QR code : `tools/kiosk-qr.json` (adresse de l'APK + empreinte de la clé de signature).
+  Le QR code ne change que si la clé de signature ou l'adresse de l'APK change.
 
 ## Signature de l'APK
 
