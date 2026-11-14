@@ -23,6 +23,10 @@ réinstallation** :
 
 Le numéro de version est affiché tout en bas du menu (« v123 ») et sur la page d'installation.
 
+> **Réglage GitHub Pages** : dans *Settings → Pages → Build and deployment*, la **Source** doit
+> rester sur **GitHub Actions**. Avec « Deploy from a branch », GitHub publie la racine du dépôt
+> (ce README) à la place du menu ; la publication le rattrape, mais affiche un avertissement.
+
 ## Menus du midi
 
 La rubrique « Menus du midi » s'affiche toute seule **du mardi au vendredi jusqu'à 14h30**, et se
@@ -41,6 +45,7 @@ ajouter la date dans `closedDays` en haut de `www/js/menu-data.js` (ex. `closedD
 | `android/` | Application Android plein écran (affiche la version en ligne, copie de secours incluse). |
 | `tools/` | Vérification du menu et numérotation des versions, lancées automatiquement. |
 | `.github/workflows/build.yml` | Vérifie, publie la version en ligne, construit l'APK. |
+| `index.html` (racine) | Filet de sécurité : renvoie vers `www/` si GitHub Pages publie la racine du dépôt. Ce n'est pas le menu. |
 
 Un nouvel APK n'est publié que si le dossier `android/` change : les tablettes n'ont alors pas
 besoin d'être réinstallées pour un simple changement de menu.
