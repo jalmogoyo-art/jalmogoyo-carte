@@ -53,8 +53,12 @@ jobs:
             gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA&per_page=50" \
               --jq "[.workflow_runs[] | select(.path == \"dynamic/pages/pages-build-deployment\" $1)] | length" 2>/dev/null || echo 0
           }
+          # "workflow" = GitHub Actions (correct) · "legacy" = Deploy from a branch
+          mode=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type 2>/dev/null || echo unknown)
+          echo "Réglage GitHub Pages (build_type) : $mode"
+          if [ "$mode" = "workflow" ]; then echo "Source : GitHub Actions (OK)"; exit 0; fi
           sleep 10
-          if [ "$(runs '')" = "0" ]; then echo "Pages source: GitHub Actions (OK)"; exit 0; fi
+          if [ "$mode" != "legacy" ] && [ "$(runs '')" = "0" ]; then echo "Source : GitHub Actions (OK)"; exit 0; fi
           echo "::warning title=Réglage GitHub Pages à corriger::Settings → Pages → Source doit être « GitHub Actions » (actuellement « Deploy from a branch »)."
           for i in $(seq 1 36); do
             [ "$(runs 'and .status != "completed"')" = "0" ] && break
