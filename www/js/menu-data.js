@@ -37,7 +37,7 @@ window.MENU_DATA = {
       t: {
         fr: { title: 'Suggestions', sub: 'Minimum requis 2 personnes · prix par personne' },
         en: { title: 'Chef’s suggestions', sub: 'Minimum 2 persons · price per person' },
-        de: { title: 'Empfehlungen', sub: 'Mindestens 2 Personen · Preis pro Person' },
+        de: { title: 'Empfehlungen', sub: 'Ab 2 Personen · Preis pro Person' },
         ko: { title: '추천 메뉴', sub: '2인 이상 주문 · 1인 가격' }
       },
       items: [
