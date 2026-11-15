@@ -242,6 +242,11 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 .m-ko { font-size: 24px; color: var(--grey); margin-top: 4px; }
 .m-title { margin-top: 14px; font-size: 20px; font-style: italic; color: #333; }
 .m-desc { margin-top: 12px; font-size: 18px; line-height: 1.55; color: #3d3b33; }
+.m-flavors { margin-top: 22px; }
+.m-flavors b { display: block; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--red); margin-bottom: 10px; font-weight: 600; }
+.m-flavors ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 10px; }
+.m-flavors li { padding: 10px 14px; border-radius: 10px; background: #fff; border: 1px solid #e0d9c0; font-size: 18px; }
+.card__hint { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: .04em; }
 .m-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .m-tags .tag { background: var(--cream-2); height: auto; padding: 8px 12px; font-weight: 500; font-size: 15px; }
 .m-price { margin-top: 22px; font-size: 40px; }

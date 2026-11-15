@@ -81,6 +81,11 @@ if (!data || !Array.isArray(data.categories) || !data.categories.length) {
         else if (g.subs && !g.subs.some((x) => x.id === d.sub)) err(w, 'sous-famille inconnue (sub) : ' + d.sub);
       }
       checkTexts(w, d.t, true);
+      if (d.flavors) {   // list of flavours shown in the dish window
+        if (!d.flavors.title) err(w, 'flavors.title manquant'); else for (const l of LANGS) if (!d.flavors.title[l]) err(w, 'flavors.title : traduction manquante ' + l);
+        if (!Array.isArray(d.flavors.list) || !d.flavors.list.length) err(w, 'flavors.list vide');
+        else d.flavors.list.forEach((f, i) => { for (const l of LANGS) if (!String(f && f[l] || '').trim()) err(w, 'flavors.list[' + i + '] : traduction manquante ' + l); });
+      }
       if (!c.drinks) {
         if (!c.noNum && (d.num == null || d.num === '')) err(w, 'numéro manquant (num)');
         if (!d.name) err(w, 'nom manquant (name)');

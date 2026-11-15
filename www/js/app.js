@@ -15,7 +15,7 @@
   /* ------------------------------------------------------------------ */
   var UI = {
     fr: {
-      perPerson: '/ pers.', perPersonLong: 'par personne', spicyOnly: 'Piquant',
+      flavorsHint: 'Voir les parfums', perPerson: '/ pers.', perPersonLong: 'par personne', spicyOnly: 'Piquant',
       allergens_btn: 'Allergènes', alTitle: 'Allergies ou intolérances ?', alSub: 'Touchez ce que vous ne pouvez pas manger : les plats qui en contiennent seront masqués.',
       alWarn: 'Information indicative. Les recettes, sauces et petits mets peuvent contenir d’autres allergènes ou des traces. En cas d’allergie, signalez-la toujours à votre serveur.',
       alClear: 'Tout effacer', alOk: 'Voir les plats', alHidden: 'Plats masqués car ils contiennent :', alReset: 'Effacer le filtre',
@@ -32,7 +32,7 @@
       welcomeHours: 'Ouvert du mardi au samedi · 12h00 – 14h00 · 19h00 – 22h00'
     },
     en: {
-      perPerson: '/ person', perPersonLong: 'per person', spicyOnly: 'Spicy',
+      flavorsHint: 'See the flavours', perPerson: '/ person', perPersonLong: 'per person', spicyOnly: 'Spicy',
       allergens_btn: 'Allergens', alTitle: 'Allergies or intolerances?', alSub: 'Tap what you cannot eat: dishes containing it will be hidden.',
       alWarn: 'For guidance only. Recipes, sauces and side dishes may contain other allergens or traces. If you have an allergy, always tell your waiter.',
       alClear: 'Clear all', alOk: 'Show dishes', alHidden: 'Dishes hidden because they contain:', alReset: 'Clear filter',
@@ -49,7 +49,7 @@
       welcomeHours: 'Open Tuesday to Saturday · 12:00 – 14:00 · 19:00 – 22:00'
     },
     de: {
-      perPerson: '/ Pers.', perPersonLong: 'pro Person', spicyOnly: 'Scharf',
+      flavorsHint: 'Sorten ansehen', perPerson: '/ Pers.', perPersonLong: 'pro Person', spicyOnly: 'Scharf',
       allergens_btn: 'Allergene', alTitle: 'Allergien oder Unverträglichkeiten?', alSub: 'Tippen Sie an, was Sie nicht essen dürfen: Gerichte, die es enthalten, werden ausgeblendet.',
       alWarn: 'Angaben ohne Gewähr. Rezepte, Saucen und Beilagen können weitere Allergene oder Spuren enthalten. Bitte informieren Sie bei einer Allergie immer Ihre Bedienung.',
       alClear: 'Alles löschen', alOk: 'Gerichte anzeigen', alHidden: 'Ausgeblendet, da enthalten:', alReset: 'Filter löschen',
@@ -66,7 +66,7 @@
       welcomeHours: 'Geöffnet Dienstag bis Samstag · 12:00 – 14:00 · 19:00 – 22:00'
     },
     ko: {
-      perPerson: '/ 1인', perPersonLong: '1인 기준', spicyOnly: '매운 메뉴',
+      flavorsHint: '맛 보기', perPerson: '/ 1인', perPersonLong: '1인 기준', spicyOnly: '매운 메뉴',
       allergens_btn: '알레르기', alTitle: '알레르기나 못 드시는 음식이 있나요?', alSub: '드실 수 없는 재료를 선택하면 해당 재료가 들어간 메뉴가 숨겨집니다.',
       alWarn: '참고용 정보입니다. 양념, 소스, 반찬에 다른 알레르기 유발 성분이 들어 있을 수 있습니다. 알레르기가 있으시면 꼭 직원에게 말씀해 주세요.',
       alClear: '모두 지우기', alOk: '메뉴 보기', alHidden: '다음 성분이 들어 있어 숨긴 메뉴:', alReset: '필터 해제',
@@ -208,6 +208,7 @@
       '<div class="card__body">' +
         '<div class="card__name">' + esc(d.name) + ' <span class="card__ko" lang="ko">' + esc(d.ko) + '</span></div>' +
         '<div class="card__title">' + esc(d._cat.showDesc ? t.title + ' — ' + t.desc : t.title) + '</div>' +
+        (d.flavors ? '<div class="card__hint">' + esc(ui('flavorsHint')) + ' ›</div>' : '') +
         '<div class="card__foot"><span class="price' + (String(d.price).split('/').length > 2 ? ' price--long' : '') + '">' + priceHtml(d) + '</span>' +
         (d.rice ? '<span class="more">' + SVG_RICE + '</span>' : '<span class="more"></span>') + '</div>' +
       '</div></button>';
@@ -341,6 +342,15 @@
     openDish(ids[(i + delta + ids.length) % ids.length], true);
   }
 
+  /* Flavours (mochi, ice cream): listed in alphabetical order of the language being read */
+  function flavorsHtml(d) {
+    if (!d.flavors) return '';
+    var names = d.flavors.list.map(function (f) { return tr(f); });
+    names.sort(function (x, y) { return x.localeCompare(y, state.lang, { sensitivity: 'base' }); });
+    return '<div class="m-flavors"><b>' + esc(tr(d.flavors.title)) + '</b><ul>' +
+      names.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul></div>';
+  }
+
   function openDish(id, swap) {
     var d = dishIndex[id];
     if (!d) return;
@@ -358,6 +368,7 @@
       '<div class="m-ko" lang="ko">' + esc(d.ko) + '</div>' +
       '<div class="m-title">' + esc(t.title) + '</div>' +
       '<p class="m-desc">' + esc(t.desc) + '</p>' +
+      flavorsHtml(d) +
       '<div class="m-tags">' + tagsHtml(d, true) + '</div>' +
       '<div class="price m-price">' + priceHtml(d) + '</div>' +
       (d.al && d.al.length ? '<div class="m-al"><b>' + esc(ui('alDish')) + '</b>' + d.al.map(function (k) { return '<span class="al-tag">' + esc(alName(k)) + '</span>'; }).join('') + '</div>' : '') +

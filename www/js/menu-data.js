@@ -407,6 +407,19 @@ window.MENU_DATA = {
             ko: { title: '망고 빙수', desc: '주문 즉시 만듭니다. 망고 주스 얼음 플레이크, 망고 셔벗, 신선한 과일.' }
           } },
         { id: 'ds-mochi', img: 'dessert-mochi', al: ['gluten', 'milk'], name: 'Mochi glacé', ko: '모찌 아이스크림', price: '3,50 / 7 / 10',
+          flavors: {
+            title: { fr: 'Parfums des mochis', en: 'Mochi flavours', de: 'Mochi-Sorten', ko: '모찌 맛' },
+            list: [
+              { fr: 'Mangue', en: 'Mango', de: 'Mango', ko: '망고' },
+              { fr: 'Thé vert', en: 'Green tea', de: 'Grüner Tee', ko: '녹차' },
+              { fr: 'Sésame', en: 'Sesame', de: 'Sesam', ko: '참깨' },
+              { fr: 'Sakura', en: 'Sakura (cherry blossom)', de: 'Sakura (Kirschblüte)', ko: '벚꽃' },
+              { fr: 'Coco', en: 'Coconut', de: 'Kokosnuss', ko: '코코넛' },
+              { fr: 'Chocolat', en: 'Chocolate', de: 'Schokolade', ko: '초콜릿' },
+              { fr: 'Litchi', en: 'Lychee', de: 'Litschi', ko: '리치' },
+              { fr: 'Yuzu', en: 'Yuzu', de: 'Yuzu', ko: '유자' }
+            ]
+          },
           t: {
             fr: { title: '1, 2 ou 3 pièces', desc: 'Demi-boule de glace enveloppée dans de la pâte de riz gluant.' },
             en: { title: 'Ice-cream mochi · 1, 2 or 3 pieces', desc: 'Half a scoop of ice cream wrapped in soft glutinous rice dough.' },
@@ -428,6 +441,19 @@ window.MENU_DATA = {
             ko: { title: '라즈베리 머랭 아이스 케이크', desc: '' }
           } },
         { id: 'ds-glaces', img: 'dessert-ice-cream', al: ['milk'], name: 'Glaces', ko: '아이스크림', price: '2,80 / 5,50 / 7,50',
+          flavors: {
+            title: { fr: 'Parfums des glaces', en: 'Ice cream flavours', de: 'Eissorten', ko: '아이스크림 맛' },
+            list: [
+              { fr: 'Vanille', en: 'Vanilla', de: 'Vanille', ko: '바닐라' },
+              { fr: 'Chocolat', en: 'Chocolate', de: 'Schokolade', ko: '초콜릿' },
+              { fr: 'Mangue', en: 'Mango', de: 'Mango', ko: '망고' },
+              { fr: 'Litchi', en: 'Lychee', de: 'Litschi', ko: '리치' },
+              { fr: 'Framboise', en: 'Raspberry', de: 'Himbeere', ko: '라즈베리' },
+              { fr: 'Café', en: 'Coffee', de: 'Kaffee', ko: '커피' },
+              { fr: 'Pomme verte', en: 'Green apple', de: 'Grüner Apfel', ko: '청사과' },
+              { fr: 'Coco', en: 'Coconut', de: 'Kokosnuss', ko: '코코넛' }
+            ]
+          },
           t: {
             fr: { title: '1, 2 ou 3 boules', desc: '' },
             en: { title: 'Ice cream · 1, 2 or 3 scoops', desc: '' },
