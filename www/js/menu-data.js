@@ -619,7 +619,7 @@ window.MENU_DATA = {
         { id: 's-diabolo', group: 'softs', size: '25 cl', price: 4.5,
           t: { fr: { title: 'Diabolo', desc: 'Limonade + sirop au choix : pêche, violette, grenadine, fraise, menthe, citron' }, en: { title: 'Diabolo', desc: 'Lemonade with a syrup of your choice: peach, violet, grenadine, strawberry, mint, lemon' }, de: { title: 'Diabolo', desc: 'Limonade mit Sirup nach Wahl: Pfirsich, Veilchen, Grenadine, Erdbeere, Minze, Zitrone' }, ko: { title: '디아볼로', desc: '레모네이드 + 원하는 시럽: 복숭아, 바이올렛, 석류, 딸기, 민트, 레몬' } } },
         { id: 's-juice', group: 'softs', size: '25 cl', price: 4,
-          t: { fr: { title: 'Jus de fruits' }, en: { title: 'Fruit juice' }, de: { title: 'Fruchtsaft' }, ko: { title: '과일 주스' } } },
+          t: { fr: { title: 'Jus de fruits', desc: 'Au choix : abricot, canneberge, litchi, mangue, orange, pomme' }, en: { title: 'Fruit juice', desc: 'Your choice: apple, apricot, cranberry, lychee, mango, orange' }, de: { title: 'Fruchtsaft', desc: 'Nach Wahl: Apfel, Aprikose, Cranberry, Litschi, Mango, Orange' }, ko: { title: '과일 주스', desc: '선택: 살구, 크랜베리, 리치, 망고, 오렌지, 사과' } } },
         { id: 's-aloe', group: 'softs', size: '25 cl', price: 5.5, korean: true,
           t: { fr: { title: 'Jus d’aloe vera' }, en: { title: 'Aloe vera drink' }, de: { title: 'Aloe-Vera-Saft' }, ko: { title: '알로에 주스' } } },
         { id: 's-sirop', group: 'softs', size: '25 cl', price: 3,
