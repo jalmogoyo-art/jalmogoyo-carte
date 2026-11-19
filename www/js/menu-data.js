@@ -40,6 +40,7 @@ window.MENU_DATA = {
         de: { title: 'Empfehlungen', sub: 'Ab 2 Personen · Preis pro Person' },
         ko: { title: '추천 메뉴', sub: '2인 이상 주문 · 1인 가격' }
       },
+      foot: { fr: 'Bol de riz supplémentaire : 3 €', en: 'Extra bowl of rice: €3', de: 'Zusätzliche Schale Reis: 3 €', ko: '공기밥 추가: 3 €' },
       items: [
         { id: 'bbq-assortment', al: ['gluten', 'soy', 'sesame', 'crustaceans'], num: '40', name: 'Modeum Gui', ko: '모둠 구이', price: 33, img: 'bbq-assortment', two: true, rice: true,
           t: {
@@ -264,6 +265,7 @@ window.MENU_DATA = {
         de: 'Wie funktioniert es? Das Fleisch wird auf dem Grill in der Mitte Ihres Tisches gegrillt. Wickeln Sie einen Bissen mit etwas Sauce und Beilagen in ein Salatblatt und genießen Sie ihn in einem Happen!',
         ko: '테이블 가운데 그릴에서 고기를 구워 드세요. 상추에 고기와 쌈장, 반찬을 올려 한입에 쌈을 즐겨보세요!'
       },
+      foot: { fr: 'Bol de riz supplémentaire : 3 €', en: 'Extra bowl of rice: €3', de: 'Zusätzliche Schale Reis: 3 €', ko: '공기밥 추가: 3 €' },
       items: [
         { id: 'bbq-beef', al: ['soy', 'gluten', 'sesame'], num: '23', name: 'So Deungsim', ko: '소고기 등심', price: 24, img: 'bbq-beef', two: true, rice: true,
           t: {
@@ -332,6 +334,7 @@ window.MENU_DATA = {
         de: 'Dolsot-Bibimbap: „Dolsot“ ist der Steintopf, „Bibimbap“ bedeutet gemischter Reis. Reis mit Gemüse und einer Zutat nach Wahl. Chilipaste nach Geschmack dazugeben und gut mischen. Der Topf ist sehr heiß: Der Reis wird unten knusprig!',
         ko: '돌솥 비빔밥: 밥 위에 나물과 재료를 올렸어요. 고추장을 취향껏 넣고 잘 비벼 드세요. 돌솥이 뜨거우니 조심하세요. 바닥의 누룽지도 별미예요!'
       },
+      foot: { fr: 'Supplément œuf ou tofu : 1,50 €', en: 'Extra egg or tofu: €1.50', de: 'Aufpreis Ei oder Tofu: 1,50 €', ko: '계란 또는 두부 추가: 1.50 €' },
       items: [
         { id: 'bibimbap-seafood', al: ['crustaceans', 'molluscs', 'eggs', 'soy', 'gluten', 'sesame'], num: '32', name: 'Haemul Dolsot Bibimbap', ko: '해물 돌솥 비빔밥', price: 23, img: 'bibimbap-seafood',
           t: {
@@ -588,9 +591,9 @@ window.MENU_DATA = {
           t: { fr: { title: 'Premières Grives', desc: 'Côtes de Gascogne IGP · Domaine Tariquet — blanc moelleux' }, en: { title: 'Premières Grives', desc: 'Côtes de Gascogne IGP · Domaine Tariquet — sweet white' }, de: { title: 'Premières Grives', desc: 'Côtes de Gascogne IGP · Domaine Tariquet — lieblicher Weißwein' }, ko: { title: 'Premières Grives', desc: '코트 드 가스코뉴 IGP · Domaine Tariquet — 스위트 화이트' } } },
         { id: 'w-galets', group: 'wines', sub: 'rose', sizes: [['12 cl', 4.8], ['25 cl', 9.5], ['50 cl', 19], ['75 cl', 28]], year: '2025',
           t: { fr: { title: 'Les Galets de Provence', desc: 'Côtes de Provence AOP' }, en: { title: 'Les Galets de Provence', desc: 'Côtes de Provence AOP' }, de: { title: 'Les Galets de Provence', desc: 'Côtes de Provence AOP' }, ko: { title: 'Les Galets de Provence', desc: '코트 드 프로방스 AOP' } } },
-        { id: 'g-hwayo', group: 'digestifs', size: '4 cl', price: 8, korean: true,
+        { id: 'g-hwayo', group: 'digestifs', size: '4 cl', price: 8.5, korean: true,
           t: { fr: { title: 'Hwayo 41°', desc: 'Soju premium coréen, distillé à partir de riz' }, en: { title: 'Hwayo 41', desc: 'Premium Korean soju distilled from rice' }, de: { title: 'Hwayo 41', desc: 'Koreanischer Premium-Soju, aus Reis destilliert' }, ko: { title: '화요 41', desc: '쌀로 빚은 프리미엄 증류식 소주' } } },
-        { id: 'g-ginseng', group: 'digestifs', size: '4 cl', price: 8, korean: true,
+        { id: 'g-ginseng', group: 'digestifs', size: '4 cl', price: 8.5, korean: true,
           t: { fr: { title: 'Liqueur de ginseng' }, en: { title: 'Ginseng liqueur' }, de: { title: 'Ginsenglikör' }, ko: { title: '인삼주' } } },
         { id: 'g-cognac', group: 'digestifs', size: '4 cl', price: 9.5,
           t: { fr: { title: 'Cognac Rémy Martin V.S.O.P' }, en: { title: 'Cognac Rémy Martin V.S.O.P' }, de: { title: 'Cognac Rémy Martin V.S.O.P' }, ko: { title: '레미 마르탱 V.S.O.P 코냑' } } },
@@ -617,15 +620,15 @@ window.MENU_DATA = {
         { id: 's-limonade', group: 'softs', size: '25 cl', price: 4,
           t: { fr: { title: 'Limonade' }, en: { title: 'Lemonade' }, de: { title: 'Limonade' }, ko: { title: '레모네이드' } } },
         { id: 's-diabolo', group: 'softs', size: '25 cl', price: 4.5,
-          t: { fr: { title: 'Diabolo', desc: 'Limonade + sirop au choix : pêche, violette, grenadine, fraise, menthe, citron' }, en: { title: 'Diabolo', desc: 'Lemonade with a syrup of your choice: peach, violet, grenadine, strawberry, mint, lemon' }, de: { title: 'Diabolo', desc: 'Limonade mit Sirup nach Wahl: Pfirsich, Veilchen, Grenadine, Erdbeere, Minze, Zitrone' }, ko: { title: '디아볼로', desc: '레모네이드 + 원하는 시럽: 복숭아, 바이올렛, 석류, 딸기, 민트, 레몬' } } },
+          t: { fr: { title: 'Diabolo', desc: 'Limonade + sirop au choix : citron, fraise, grenadine, menthe, pêche, violette' }, en: { title: 'Diabolo', desc: 'Lemonade with a syrup of your choice: grenadine, lemon, mint, peach, strawberry, violet' }, de: { title: 'Diabolo', desc: 'Limonade mit Sirup nach Wahl: Erdbeere, Grenadine, Minze, Pfirsich, Veilchen, Zitrone' }, ko: { title: '디아볼로', desc: '레모네이드 + 원하는 시럽: 레몬, 딸기, 석류, 민트, 복숭아, 바이올렛' } } },
         { id: 's-juice', group: 'softs', size: '25 cl', price: 4,
           t: { fr: { title: 'Jus de fruits', desc: 'Au choix : abricot, canneberge, litchi, mangue, orange, pomme' }, en: { title: 'Fruit juice', desc: 'Your choice: apple, apricot, cranberry, lychee, mango, orange' }, de: { title: 'Fruchtsaft', desc: 'Nach Wahl: Apfel, Aprikose, Cranberry, Litschi, Mango, Orange' }, ko: { title: '과일 주스', desc: '선택: 살구, 크랜베리, 리치, 망고, 오렌지, 사과' } } },
         { id: 's-aloe', group: 'softs', size: '25 cl', price: 5.5, korean: true,
           t: { fr: { title: 'Jus d’aloe vera' }, en: { title: 'Aloe vera drink' }, de: { title: 'Aloe-Vera-Saft' }, ko: { title: '알로에 주스' } } },
         { id: 's-sirop', group: 'softs', size: '25 cl', price: 3,
-          t: { fr: { title: 'Sirop à l’eau « Monin »', desc: 'Parfums : pêche, violette, grenadine, fraise, menthe, citron' }, en: { title: 'Syrup with water (Monin)', desc: 'Flavours: peach, violet, grenadine, strawberry, mint, lemon' }, de: { title: 'Sirup mit Wasser (Monin)', desc: 'Sorten: Pfirsich, Veilchen, Grenadine, Erdbeere, Minze, Zitrone' }, ko: { title: '시럽 워터 (모닌)', desc: '맛: 복숭아, 바이올렛, 석류, 딸기, 민트, 레몬' } } },
+          t: { fr: { title: 'Sirop à l’eau « Monin »', desc: 'Parfums : citron, fraise, grenadine, menthe, pêche, violette' }, en: { title: 'Syrup with water (Monin)', desc: 'Flavours: grenadine, lemon, mint, peach, strawberry, violet' }, de: { title: 'Sirup mit Wasser (Monin)', desc: 'Sorten: Erdbeere, Grenadine, Minze, Pfirsich, Veilchen, Zitrone' }, ko: { title: '시럽 워터 (모닌)', desc: '맛: 레몬, 딸기, 석류, 민트, 복숭아, 바이올렛' } } },
         { id: 'h-tea', group: 'hot', size: '', price: 4,
-          t: { fr: { title: 'Thé', desc: 'Au choix : thé au blé, vert, jasmin, verveine, menthe' }, en: { title: 'Tea', desc: 'Your choice: grain tea, green, jasmine, verbena, mint' }, de: { title: 'Tee', desc: 'Nach Wahl: Getreidetee, Grüntee, Jasmin, Verbene, Minze' }, ko: { title: '차', desc: '선택: 곡물차, 녹차, 자스민차, 버베나차, 민트차' } } },
+          t: { fr: { title: 'Thé', desc: 'Au choix : thé au blé, jasmin, menthe, verveine, vert' }, en: { title: 'Tea', desc: 'Your choice: grain tea, green, jasmine, mint, verbena' }, de: { title: 'Tee', desc: 'Nach Wahl: Getreidetee, Grüntee, Jasmin, Minze, Verbene' }, ko: { title: '차', desc: '선택: 곡물차, 자스민차, 민트차, 버베나차, 녹차' } } },
         { id: 'h-espresso', group: 'hot', size: '', price: 2.5,
           t: { fr: { title: 'Expresso' }, en: { title: 'Espresso' }, de: { title: 'Espresso' }, ko: { title: '에스프레소' } } },
         { id: 'h-deca', group: 'hot', size: '', price: 2.5,
