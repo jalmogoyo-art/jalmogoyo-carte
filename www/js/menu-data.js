@@ -76,6 +76,8 @@ window.MENU_DATA = {
         de: 'Vorspeise nach Wahl: 3 gegrillte Teigtaschen (Huhn oder Gemüse) oder 3 Pfannkuchen mit Meeresfrüchten und Schnittlauch. Jedes Menü mit einer Schale Reis und kleinen Beilagen.',
         ko: '전채 선택: 군만두 3개 (닭고기 또는 야채) 또는 해물파전 3조각. 모든 메뉴는 공기밥과 반찬이 함께 제공됩니다.'
       },
+      foot: [{ fr: 'Bol de riz supplémentaire : 3 €', en: 'Extra bowl of rice: €3', de: 'Zusätzliche Schale Reis: 3 €', ko: '공기밥 추가: 3 €' },
+             { fr: 'Supplément œuf ou tofu : 1,50 €', en: 'Extra egg or tofu: €1.50', de: 'Aufpreis Ei oder Tofu: 1,50 €', ko: '계란 또는 두부 추가: 1.50 €' }],
       items: [
         { id: 'lunch-a', al: ['gluten', 'soy', 'sesame'], num: 'A', name: 'Jeyuk / Dak Bokkeum', ko: '제육볶음 / 닭볶음', price: 17, img: 'jeyuk-bokkeum', spicy: 2, rice: true,
           t: {
@@ -546,11 +548,9 @@ window.MENU_DATA = {
         { id: 'd-nabeer', group: 'beers', size: '33 cl', price: 4,
           t: { fr: { title: 'Bière sans alcool', desc: 'Alpirsbacher' }, en: { title: 'Alcohol-free beer', desc: 'Alpirsbacher' }, de: { title: 'Alkoholfreies Bier', desc: 'Alpirsbacher' }, ko: { title: '무알코올 맥주', desc: '알피르스바허' } } },
         { id: 'd-picon', group: 'beers', size: '25 cl / 50 cl', price: '4,50 / 8',
-          t: { fr: { title: 'Amer – Cynar – Picon bière' }, en: { title: 'Beer with Amer, Cynar or Picon' }, de: { title: 'Bier mit Amer, Cynar oder Picon' }, ko: { title: '아메르 · 치나르 · 피콩 비어' } } },
+          t: { fr: { title: 'Amer – Cynar – Monaco – Picon' }, en: { title: 'Amer – Cynar – Monaco – Picon', desc: 'Beer with Amer, Cynar or Picon; Monaco: shandy with grenadine' }, de: { title: 'Amer – Cynar – Monaco – Picon', desc: 'Bier mit Amer, Cynar oder Picon; Monaco: Radler mit Grenadine' }, ko: { title: '아메르 · 치나르 · 모나코 · 피콩', desc: '아메르 · 치나르 · 피콩을 넣은 맥주, 모나코: 석류 시럽 파나셰' } } },
         { id: 'd-panache', group: 'beers', size: '25 cl / 50 cl', price: '4,30 / 7,80',
           t: { fr: { title: 'Panaché' }, en: { title: 'Shandy (beer & lemonade)' }, de: { title: 'Radler' }, ko: { title: '파나셰 (맥주 + 레모네이드)' } } },
-        { id: 'd-monaco', group: 'beers', size: '25 cl / 50 cl', price: '4,50 / 8',
-          t: { fr: { title: 'Monaco', desc: 'Panaché à la grenadine' }, en: { title: 'Monaco', desc: 'Shandy with grenadine' }, de: { title: 'Monaco', desc: 'Radler mit Grenadine' }, ko: { title: '모나코', desc: '석류 시럽을 넣은 파나셰' } } },
         { id: 'w-pinot-noir', group: 'wines', sub: 'red', sizes: [['12 cl', 6.5], ['25 cl', 13], ['50 cl', 26], ['75 cl', 36]], year: '2024', bio: true,
           t: { fr: { title: 'Pinot Noir – Alsace AOP', desc: 'Alsace · Paul Ginglinger, Eguisheim' }, en: { title: 'Pinot Noir – Alsace AOP', desc: 'Alsace · Paul Ginglinger, Eguisheim' }, de: { title: 'Pinot Noir – Alsace AOP', desc: 'Elsass · Paul Ginglinger, Eguisheim' }, ko: { title: 'Pinot Noir – Alsace AOP', desc: '알자스 · Paul Ginglinger, Eguisheim' } } },
         { id: 'w-rocailles', group: 'wines', sub: 'red', size: '75 cl', price: 65, year: '2023', bio: true,

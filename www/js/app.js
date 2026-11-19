@@ -288,7 +288,7 @@
         (t.sub ? '<p class="section__sub">' + esc(t.sub) + '</p>' : '') +
         (c.intro ? '<p class="section__intro">' + esc(tr(c.intro)) + '</p>' : '') +
         body +
-        (c.foot ? '<p class="drinks__note">' + esc(tr(c.foot)) + '</p>' : '') +
+        (c.foot ? [].concat(c.foot).map(function (f) { return '<p class="drinks__note">' + esc(tr(f)) + '</p>'; }).join('') : '') +
         (c.note ? '<p class="section__note">' + esc(tr(c.note)) + '</p>' : '') +
         '<div class="divider"></div></section>';
     }).join('');

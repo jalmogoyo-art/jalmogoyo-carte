@@ -51,7 +51,7 @@ if (!data || !Array.isArray(data.categories) || !data.categories.length) {
     if (!c.id || catIds.has(c.id)) err(cw, 'identifiant manquant ou en double');
     catIds.add(c.id);
     checkTexts(cw, c.t, true);
-    if (c.foot != null) for (const l of LANGS) if (!String(c.foot[l] || '').trim()) err(cw, 'foot : traduction manquante ' + l);
+    if (c.foot != null) for (const f of [].concat(c.foot)) for (const l of LANGS) if (!String(f[l] || '').trim()) err(cw, 'foot : traduction manquante ' + l);
     if (c.onlyAt) {
       const o = c.onlyAt;
       if (o.days && !(Array.isArray(o.days) && o.days.every((d) => Number.isInteger(d) && d >= 0 && d <= 6))) err(cw, 'onlyAt.days : jours de 0 (dimanche) à 6 (samedi)');
