@@ -65,6 +65,7 @@ if (!data || !Array.isArray(data.categories) || !data.categories.length) {
         for (const l of LANGS) if (!g.t || !String(g.t[l] || '').trim()) err(gw, 'traduction manquante : ' + l);
         for (const sb of g.subs || []) for (const l of LANGS) if (!sb.id || !sb.t || !String(sb.t[l] || '').trim()) err(gw, 'sous-famille : identifiant ou traduction manquante (' + l + ')');
         if (!c.items.some((d) => d.group === g.id)) err(gw, 'famille vide');
+        if (g.note != null) for (const l of LANGS) if (!String(g.note[l] || '').trim()) err(gw, 'note : traduction manquante ' + l);
       }
     }
     for (const d of c.items) {

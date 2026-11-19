@@ -255,6 +255,7 @@
     } else {
       body = '<div class="drinks">' + items.map(drinkHtml).join('') + '</div>';
     }
+    if (g.note) body += '<p class="drinks__note">' + esc(tr(g.note)) + '</p>';
     return tabs + body;
   }
 
