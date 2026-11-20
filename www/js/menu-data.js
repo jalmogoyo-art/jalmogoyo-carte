@@ -114,7 +114,7 @@ window.MENU_DATA = {
             de: { title: 'Menü F', desc: 'Dolsot-Bibimbap mit Lachs (heißer Steintopf).' },
             ko: { title: 'F 메뉴', desc: '연어 돌솥 비빔밥.' }
           } },
-        { id: 'lunch-g', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'G', name: 'Dolsot Bibimbap', ko: '야채 돌솥 비빔밥', price: 16, img: 'bibimbap-veg', veg: true, rice: true,
+        { id: 'lunch-g', al: ['eggs', 'soy', 'gluten', 'sesame'], num: 'G', name: 'Dolsot Bibimbap', ko: '야채 돌솥 비빔밥', price: 17, img: 'bibimbap-veg', veg: true, rice: true,
           t: {
             fr: { title: 'Menu G', desc: 'Dolsot bibimbap aux légumes (bol en pierre chauffé).' },
             en: { title: 'Menu G', desc: 'Vegetable dolsot bibimbap (heated stone bowl).' },
