@@ -465,7 +465,7 @@ window.MENU_DATA = {
             de: { title: 'Eis · 1, 2 oder 3 Kugeln', desc: '' },
             ko: { title: '1 · 2 · 3 스쿱', desc: '' }
           } },
-        { id: 'ds-irish', al: ['milk'], name: 'Irish coffee', ko: '아이리시 커피', price: 8.5,
+        { id: 'ds-irish', al: ['milk'], name: 'Irish coffee', ko: '아이리시 커피', price: 9,
           t: {
             fr: { title: 'Café, whiskey et crème', desc: '' },
             en: { title: 'Coffee, whiskey and cream', desc: '' },
